@@ -88,7 +88,7 @@ Hakikisha kuhusu usiri katika mazungumzo.
 Maliza na: "Asante kwa kuripoti hili. Sauti yako ni muhimu. Utapokea nambari ya kumbukumbu."`
 };
 
-export default function StartCall({ accessToken }: { accessToken: string }) {
+export default function StartCall({ configId, accessToken }: { configId?: string, accessToken: string }) {
   const { status, connect } = useVoice();
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
   const [showLanguages, setShowLanguages] = useState(true);
@@ -96,18 +96,16 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
   const handleStartCall = () => {
     setShowLanguages(false);
     
-    connect({ 
-      auth: { type: "accessToken", value: accessToken },
-      sessionSettings: {
-        type: "session_settings",
-        systemPrompt: systemPrompts[selectedLanguage],
-        // Additional settings can be added here
-        voice: {
-          provider: "HUME_AI",
-          name: "KORA" // Professional, clear voice
-        }
-      }
-    })
+              <Button
+                className={"z-50 flex items-center gap-1.5 rounded-full"}
+                onClick={() => {
+                  connect({ 
+                    auth: { type: "accessToken", value: accessToken },
+                    configId, 
+                     // additional options can be added here
+                     // like resumedChatGroupId and sessionSettings
+                  })
+      
       .then(() => {})
       .catch((error) => {
         console.error('Connection error:', error);
