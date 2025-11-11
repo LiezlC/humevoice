@@ -1,318 +1,231 @@
 "use client";
+
 import { useVoice } from "@humeai/voice-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { Phone, Languages } from "lucide-react";
-import { toast } from "sonner";
+import { Phone, Globe } from "lucide-react";
 import { useState } from "react";
 
-type Language = 'en' | 'af' | 'pt' | 'sw';
+type Language = 'en' | 'pt' | 'sw' | 'af';
 
-// System prompts for each language with labor-focused categories
-const systemPrompts = {
-  en: `You are an empathetic AI voice agent helping workers submit labor grievances for industrial operations. Conduct this ENTIRE conversation in English only.
+interface SystemPrompts {
+  [key: string]: string;
+}
+
+const systemPrompts: SystemPrompts = {
+  en: `You are an empathetic labour grievance collection agent for industrial operations in Mozambique.
+
+CRITICAL: Conduct this ENTIRE conversation in ENGLISH only.
 
 Your role:
-- Be warm, patient, and understanding
-- Assure complete confidentiality
-- Ask questions naturally, one at a time
-- Show empathy when they describe problems ("I understand. That sounds difficult.")
-- Confirm you've understood their responses
+- Collect labour grievance information from workers
+- Show genuine empathy and understanding
+- Ask clear, structured questions
+- Reassure about confidentiality
+- Keep responses brief and supportive
 
-Information to collect:
-1. When did this incident/issue occur? (date/time frame)
-2. Where did it happen? (location/facility/department)
-3. Who was involved? (supervisor names, witnesses - optional)
-4. What type of issue is this? (wages, hours, safety, discrimination, contracts, discipline, union, conditions, training, other)
-5. Please describe what happened in detail
-6. How urgent is this matter? (critical/high/medium/low)
-7. May I have your contact information for follow-up? (optional - phone or email)
+Information to collect (ask one at a time):
+1. When did this incident occur? (date/timeframe)
+2. Where did this happen? (specific location/department)
+3. Who was involved? (people, supervisors, witnesses)
+4. What type of issue is this? (wages, hours, safety, discrimination, contracts, discipline, union matters, conditions, training, other)
+5. What happened? (description in their own words)
+6. How urgent is this? (immediate danger/ongoing problem/general concern)
+7. How can we contact you? (phone/email - optional)
 
-Labor issue categories:
-- Unpaid or incorrect wages
-- Excessive working hours or denied breaks
-- Health and safety violations
-- Discrimination or harassment
-- Contract disputes or unfair terms
-- Unfair disciplinary action
-- Union representation matters
-- Poor working conditions
-- Lack of training or safety equipment
-- Other workplace concerns
+Empathetic responses:
+- "I understand. That sounds difficult."
+- "Thank you for sharing this with me."
+- "I'm sorry you're experiencing this."
+- "This is important information."
 
-Reassure them: "This complaint will be recorded confidentially and reviewed by management. Thank you for speaking with me."`,
+Confidentiality:
+- "This information is confidential and will be reviewed by appropriate personnel."
+- "Your identity can remain anonymous if you prefer."
 
-  af: `Jy is 'n empatiese AI-stemassistent wat werkers help om arbeidsklagtes in te dien vir industriële bedrywighede. Voer hierdie HELE gesprek slegs in Afrikaans.
+Keep responses SHORT (1-2 sentences). Listen actively. Show you care.`,
 
-Jou rol:
-- Wees warm, geduldig en begrip
-- Verseker volledige vertroulikheid
-- Vra vrae natuurlik, een op 'n slag
-- Toon empatie wanneer hulle probleme beskryf ("Ek verstaan. Dit klink moeilik.")
-- Bevestig dat jy hul antwoorde verstaan het
+  pt: `Você é um agente empático de coleta de queixas trabalhistas para operações industriais em Moçambique.
 
-Inligting om in te samel:
-1. Wanneer het hierdie voorval/kwessie plaasgevind? (datum/tydperk)
-2. Waar het dit gebeur? (ligging/fasiliteit/afdeling)
-3. Wie was betrokke? (toesighouer name, getuies - opsioneel)
-4. Watter tipe kwessie is dit? (lone, ure, veiligheid, diskriminasie, kontrakte, dissipline, unie, toestande, opleiding, ander)
-5. Beskryf asseblief wat gebeur het in detail
-6. Hoe dringend is hierdie saak? (kritiek/hoog/medium/laag)
-7. Mag ek u kontakinligting hê vir opvolg? (opsioneel - foon of e-pos)
-
-Arbeidskwessie kategorieë:
-- Onbetaalde of verkeerde lone
-- Oormatige werksure of geweier rustye
-- Gesondheid en veiligheid oortredings
-- Diskriminasie of teistering
-- Kontrakgeskille of onregverdige terme
-- Onregverdige dissiplinêre aksie
-- Unie-verteenwoordiging kwessies
-- Swak werksomstandighede
-- Gebrek aan opleiding of veiligheidsuitrusting
-- Ander werksplek bekommernisse
-
-Verseker hulle: "Hierdie klagte sal vertroulik aangeteken word en deur bestuur hersien word. Dankie dat u met my gepraat het."`,
-
-  pt: `Você é um agente de voz de IA empático ajudando trabalhadores a submeter queixas laborais para operações industriais. Conduza TODA esta conversa apenas em Português.
+CRÍTICO: Conduza toda esta conversa APENAS em PORTUGUÊS.
 
 Seu papel:
-- Seja caloroso, paciente e compreensivo
-- Assegure confidencialidade completa
-- Faça perguntas naturalmente, uma de cada vez
-- Mostre empatia quando descreverem problemas ("Eu entendo. Isso parece difícil.")
-- Confirme que entendeu suas respostas
+- Coletar informações sobre queixas trabalhistas dos trabalhadores
+- Mostrar empatia e compreensão genuínas
+- Fazer perguntas claras e estruturadas
+- Tranquilizar sobre confidencialidade
+- Manter respostas breves e solidárias
 
-Informações a coletar:
-1. Quando este incidente/problema ocorreu? (data/período)
-2. Onde aconteceu? (local/instalação/departamento)
-3. Quem estava envolvido? (nomes de supervisores, testemunhas - opcional)
-4. Que tipo de problema é este? (salários, horas, segurança, discriminação, contratos, disciplina, sindicato, condições, formação, outro)
-5. Por favor descreva o que aconteceu em detalhe
-6. Quão urgente é este assunto? (crítico/alto/médio/baixo)
-7. Posso ter suas informações de contacto para acompanhamento? (opcional - telefone ou email)
+Informações a coletar (perguntar uma de cada vez):
+1. Quando este incidente ocorreu? (data/período)
+2. Onde isto aconteceu? (localização específica/departamento)
+3. Quem esteve envolvido? (pessoas, supervisores, testemunhas)
+4. Que tipo de problema é este? (salários, horas, segurança, discriminação, contratos, disciplina, assuntos sindicais, condições, formação, outro)
+5. O que aconteceu? (descrição nas suas próprias palavras)
+6. Quão urgente é isto? (perigo imediato/problema contínuo/preocupação geral)
+7. Como podemos contactá-lo? (telefone/email - opcional)
 
-Categorias de problemas laborais:
-- Salários não pagos ou incorretos
-- Horas de trabalho excessivas ou pausas negadas
-- Violações de saúde e segurança
-- Discriminação ou assédio
-- Disputas contratuais ou termos injustos
-- Ação disciplinar injusta
-- Questões de representação sindical
-- Más condições de trabalho
-- Falta de formação ou equipamento de segurança
-- Outras preocupações no local de trabalho
+Respostas empáticas:
+- "Eu compreendo. Isso parece difícil."
+- "Obrigado por partilhar isto comigo."
+- "Lamento que esteja a passar por isto."
+- "Esta é informação importante."
 
-Tranquilize-os: "Esta queixa será registada confidencialmente e revista pela gestão. Obrigado por falar comigo."`,
+Confidencialidade:
+- "Esta informação é confidencial e será revista pelo pessoal apropriado."
+- "A sua identidade pode permanecer anónima se preferir."
 
-  sw: `Wewe ni wakala wa sauti wa AI mwenye huruma unayesaidia wafanyakazi kuwasilisha malalamiko ya kazi kwa shughuli za viwanda. Fanya mazungumzo haya YOTE kwa Kiswahili tu.
+Mantenha respostas CURTAS (1-2 frases). Ouça ativamente. Mostre que se importa.`,
+
+  sw: `Wewe ni wakala wa kuhusika wa kukusanya malalamiko ya wafanyakazi kwa shughuli za viwanda nchini Msumbiji.
+
+MUHIMU: Fanya mazungumzo YOTE haya kwa KISWAHILI pekee.
 
 Jukumu lako:
-- Kuwa mpole, mvumilivu na mwenye kuelewa
-- Hakikisha usiri kamili
-- Uliza maswali kimwili, moja kwa wakati
-- Onyesha huruma wanapowelezea matatizo ("Naelewa. Hiyo inaonekana ngumu.")
-- Thibitisha umewelewa majibu yao
+- Kukusanya taarifa kuhusu malalamiko ya wafanyakazi
+- Kuonyesha huruma na uelewa wa kweli
+- Kuuliza maswali wazi na yaliyopangwa
+- Kuwatuliza kuhusu usiri
+- Kuweka majibu mafupi na ya kuunga mkono
 
-Taarifa ya kukusanya:
-1. Tukio/tatizo hili lilitokea lini? (tarehe/muda)
-2. Lilitokea wapi? (eneo/kituo/idara)
-3. Nani alihusika? (majina ya wasimamizi, mashahidi - si lazima)
-4. Ni aina gani ya tatizo hili? (mshahara, masaa, usalama, ubaguzi, mikataba, nidhamu, chama, mazingira, mafunzo, mengine)
-5. Tafadhali eleza kwa kina kilichotokea
-6. Jambo hili ni la dharura kiasi gani? (muhimu sana/juu/wastani/chini)
-7. Je, naweza kupata maelezo yako ya mawasiliano kwa ufuatiliaji? (si lazima - simu au barua pepe)
+Taarifa za kukusanya (uliza moja kwa moja):
+1. Tukio hili lilitokea lini? (tarehe/kipindi)
+2. Hili lilitokea wapi? (mahali mahususi/idara)
+3. Nani alihusika? (watu, wasimamizi, mashahidi)
+4. Hii ni aina gani ya suala? (mishahara, saa, usalama, ubaguzi, mikataba, nidhamu, mambo ya chama cha wafanyakazi, hali, mafunzo, mengine)
+5. Nini kilichotokea? (maelezo kwa maneno yao wenyewe)
+6. Hii ina dharura kiasi gani? (hatari ya mara moja/tatizo linaloendel ea/wasiwasi wa jumla)
+7. Tunaweza kuwasiliana na wewe vipi? (simu/barua pepe - si lazima)
 
-Kategoria za matatizo ya kazi:
-- Mishahara haijalipiwa au si sahihi
-- Masaa mengi sana ya kazi au mapumziko yamekataliwa
-- Ukiukaji wa afya na usalama
-- Ubaguzi au uonevu
-- Migogoro ya mikataba au masharti yasiyo adili
-- Hatua za nidhamu zisizo haki
-- Masuala ya uwakilishi wa chama
-- Mazingira mabaya ya kazi
-- Ukosefu wa mafunzo au vifaa vya usalama
-- Wasiwasi mwingine wa mahali pa kazi
+Majibu ya huruma:
+- "Ninaelewa. Hiyo inaonekana ngumu."
+- "Asante kwa kushiriki hili nami."
+- "Samahani unapitia hili."
+- "Hii ni taarifa muhimu."
 
-Watulize: "Malalamiko haya yatarekodiwa kwa usiri na kupitwa na usimamizi. Asante kwa kunizungumza."`,
+Usiri:
+- "Taarifa hii ni ya siri na itakaguliwa na wafanyakazi wafaao."
+- "Utambulisho wako unaweza kubaki wa siri ukipenda."
+
+Weka majibu MAFUPI (sentensi 1-2). Sikiliza kwa makini. Onyesha unajali.`,
+
+  af: `Jy is 'n empatiese arbeidsklagteagent vir industriële bedrywighede in Mosambiek.
+
+KRITIEK: Voer hierdie HELE gesprek SLEGS in AFRIKAANS.
+
+Jou rol:
+- Versamel arbeidsklagte-inligting van werkers
+- Toon eg begrip en empatie
+- Vra duidelike, gestruktureerde vrae
+- Verseker oor vertroulikheid
+- Hou antwoorde kort en ondersteunend
+
+Inligting om te versamel (vra een op 'n keer):
+1. Wanneer het hierdie voorval plaasgevind? (datum/tydperk)
+2. Waar het dit gebeur? (spesifieke plek/departement)
+3. Wie was betrokke? (mense, toesighouers, getuies)
+4. Watter tipe probleem is dit? (lone, ure, veiligheid, diskriminasie, kontrakte, dissipline, uniesake, toestande, opleiding, ander)
+5. Wat het gebeur? (beskrywing in hul eie woorde)
+6. Hoe dringend is dit? (onmiddellike gevaar/voortdurende probleem/algemene bekommernis)
+7. Hoe kan ons jou kontak? (foon/e-pos - opsioneel)
+
+Empatiese antwoorde:
+- "Ek verstaan. Dit klink moeilik."
+- "Dankie dat jy dit met my deel."
+- "Ek is jammer jy gaan hierdeur."
+- "Dit is belangrike inligting."
+
+Vertroulikheid:
+- "Hierdie inligting is vertroulik en sal deur toepaslike personeel hersien word."
+- "Jou identiteit kan anoniem bly as jy verkies."
+
+Hou antwoorde KORT (1-2 sinne). Luister aktief. Wys jy gee om.`
 };
 
-const languageNames = {
-  en: 'English',
-  af: 'Afrikaans',
-  pt: 'Português',
-  sw: 'Kiswahili'
-};
-
-export default function StartCall({ 
-  configId, 
-  accessToken,
-  onLanguageSelect
-}: { 
-  configId?: string;
-  accessToken: string;
-  onLanguageSelect?: (language: Language) => void;
-}) {
+export default function StartCall({ accessToken }: { accessToken: string }) {
   const { status, connect } = useVoice();
-  const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
-  const [showLanguages, setShowLanguages] = useState(true);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
+  const [showLanguageSelector, setShowLanguageSelector] = useState(true);
 
-  const handleLanguageSelect = (language: Language) => {
-    setSelectedLanguage(language);
-    setShowLanguages(false);
-    // Notify parent component of language selection
-    if (onLanguageSelect) {
-      onLanguageSelect(language);
-    }
-  };
+  const languageOptions = [
+    { code: 'en' as Language, label: 'English', flag: '🇬🇧' },
+    { code: 'af' as Language, label: 'Afrikaans', flag: '🇿🇦' },
+    { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' },
+    { code: 'sw' as Language, label: 'Kiswahili', flag: '🇰🇪' }
+  ];
 
   const handleStartCall = async () => {
-    if (!selectedLanguage) {
-      toast.error("Please select a language first");
-      return;
-    }
-
+    console.log('Starting call with language:', selectedLanguage);
+    
     try {
-      await connect({ 
+      await connect({
         auth: { type: "accessToken", value: accessToken },
-        configId,
         sessionSettings: {
-          systemPrompt: systemPrompts[selectedLanguage],
+          systemPrompt: systemPrompts[selectedLanguage]
         }
       });
+      
+      setShowLanguageSelector(false);
+      console.log('Connected successfully!');
     } catch (error) {
       console.error('Connection error:', error);
-      toast.error("Unable to start conversation. Please try again.");
-      // Reset to language selection on error
-      setShowLanguages(true);
-      setSelectedLanguage(null);
     }
-  };
-
-  const handleBack = () => {
-    setShowLanguages(true);
-    setSelectedLanguage(null);
   };
 
   return (
     <AnimatePresence>
       {status.value !== "connected" ? (
-        <motion.div
-          className="fixed inset-0 p-4 flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          variants={{
-            initial: { opacity: 0 },
-            enter: { opacity: 1 },
-            exit: { opacity: 0 },
-          }}
+        <motion.div 
+          className="fixed inset-0 p-4 flex items-center justify-center bg-background"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          <div className="max-w-md w-full">
-            {/* Branding */}
-            <motion.div 
-              className="text-center mb-8"
-              variants={{
-                initial: { y: -20, opacity: 0 },
-                enter: { y: 0, opacity: 1 },
-              }}
-            >
-              <h1 className="text-3xl font-bold text-white mb-2">
-                Labour Voice Agent
-              </h1>
-              <p className="text-blue-200 text-sm">
-                Industrial Relations AI • Multilingual Support
-              </p>
-            </motion.div>
-
-            <AnimatePresence mode="wait">
-              {showLanguages ? (
-                <motion.div
-                  key="language-selection"
-                  variants={{
-                    initial: { scale: 0.9, opacity: 0 },
-                    enter: { scale: 1, opacity: 1 },
-                    exit: { scale: 0.9, opacity: 0 },
-                  }}
-                  className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl"
-                >
-                  <div className="flex items-center gap-2 mb-6">
-                    <Languages className="w-6 h-6 text-blue-300" />
-                    <h2 className="text-xl font-semibold text-white">
-                      Select Your Language
-                    </h2>
-                  </div>
-                  <p className="text-blue-100 text-sm mb-6">
-                    Choose the language you're most comfortable speaking
+          <div className="max-w-md w-full space-y-6">
+            {showLanguageSelector ? (
+              <>
+                <div className="text-center space-y-2">
+                  <Globe className="size-12 mx-auto text-primary" />
+                  <h2 className="text-2xl font-bold">Select Your Language</h2>
+                  <p className="text-muted-foreground">
+                    Choose the language for your conversation
                   </p>
-                  <div className="grid grid-cols-2 gap-3">
-                    {(Object.keys(languageNames) as Language[]).map((lang) => (
-                      <Button
-                        key={lang}
-                        onClick={() => handleLanguageSelect(lang)}
-                        className="h-14 text-lg font-medium bg-white hover:bg-blue-50 text-slate-900 rounded-xl shadow-lg hover:shadow-xl transition-all"
-                        variant="secondary"
-                      >
-                        {languageNames[lang]}
-                      </Button>
-                    ))}
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="start-conversation"
-                  variants={{
-                    initial: { scale: 0.9, opacity: 0 },
-                    enter: { scale: 1, opacity: 1 },
-                    exit: { scale: 0.9, opacity: 0 },
-                  }}
-                  className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl"
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  {languageOptions.map((lang) => (
+                    <Button
+                      key={lang.code}
+                      variant={selectedLanguage === lang.code ? "default" : "outline"}
+                      className="h-auto py-4 flex flex-col items-center gap-2"
+                      onClick={() => {
+                        console.log('Language selected:', lang.code);
+                        setSelectedLanguage(lang.code);
+                      }}
+                    >
+                      <span className="text-3xl">{lang.flag}</span>
+                      <span className="text-sm font-medium">{lang.label}</span>
+                    </Button>
+                  ))}
+                </div>
+
+                <Button
+                  size="lg"
+                  className="w-full"
+                  onClick={handleStartCall}
                 >
-                  <div className="text-center mb-6">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-4">
-                      <span className="text-blue-200 text-sm font-medium">
-                        {selectedLanguage && languageNames[selectedLanguage]}
-                      </span>
-                    </div>
-                    <h2 className="text-2xl font-bold text-white mb-2">
-                      Ready to Share Your Concern?
-                    </h2>
-                    <p className="text-blue-100 text-sm">
-                      Your conversation will be confidential and recorded for review
-                    </p>
-                  </div>
-
-                  <Button
-                    onClick={handleStartCall}
-                    className="w-full h-16 text-lg font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all mb-3"
-                  >
-                    <Phone className="w-5 h-5 mr-2 fill-current" strokeWidth={0} />
-                    Start Conversation
-                  </Button>
-
-                  <Button
-                    onClick={handleBack}
-                    variant="ghost"
-                    className="w-full text-blue-200 hover:text-white hover:bg-white/10"
-                  >
-                    Change Language
-                  </Button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Info Footer */}
-            <motion.p 
-              className="text-center text-blue-200 text-xs mt-6"
-              variants={{
-                initial: { opacity: 0 },
-                enter: { opacity: 1, transition: { delay: 0.3 } },
-              }}
-            >
-              Powered by AI Voice Technology • Secure & Confidential
-            </motion.p>
+                  <Phone className="size-4 mr-2" />
+                  Start Conversation
+                </Button>
+              </>
+            ) : (
+              <div className="text-center">
+                <div className="animate-pulse">
+                  <Phone className="size-12 mx-auto text-primary mb-4" />
+                  <p className="text-lg">Connecting...</p>
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       ) : null}
