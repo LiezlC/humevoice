@@ -122,20 +122,22 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
     { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' }
   ];
 
+  const configIds = {
+    en: '989fee36-dddf-459f-b2bf-e90644d3aadf',
+    pt: 'f1ff7e4d-ea13-4d3f-a1fb-2f3d36580aae'
+  };
+
   const handleStartCall = async () => {
     console.log('Starting call with language:', selectedLanguage);
 
     try {
       await connect({
         auth: { type: "accessToken", value: accessToken },
-        sessionSettings: {
-          type: "session_settings",
-          systemPrompt: systemPrompts[selectedLanguage]
-        }
+        configId: configIds[selectedLanguage]
       });
 
       setShowLanguageSelector(false);
-      console.log('Connected successfully!');
+      console.log('Connected successfully with config:', configIds[selectedLanguage]);
     } catch (error) {
       console.error('Connection error:', error);
     }
