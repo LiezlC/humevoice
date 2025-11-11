@@ -5,7 +5,10 @@ import { AnimatePresence, motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Phone, Globe, Check } from "lucide-react";
 import { useState, useEffect } from "react";
-import type { Language } from "@/utils/supabase";
+import type { Language as SupabaseLanguage } from "@/utils/supabase";
+
+// Local type for available languages in this component
+type Language = 'en' | 'pt';
 
 interface UITranslations {
   [key: string]: {
@@ -36,7 +39,7 @@ export default function StartCall({
   onLanguageSelect
 }: {
   accessToken: string;
-  onLanguageSelect?: (language: Language) => void;
+  onLanguageSelect?: (language: SupabaseLanguage) => void;
 }) {
   const { status, connect } = useVoice();
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
@@ -57,7 +60,7 @@ export default function StartCall({
 
     // Notify parent component of language selection
     if (onLanguageSelect) {
-      onLanguageSelect(selectedLanguage);
+      onLanguageSelect(selectedLanguage as SupabaseLanguage);
     }
 
     try {
