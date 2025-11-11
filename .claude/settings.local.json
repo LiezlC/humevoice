@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "WebSearch",
+      "WebFetch(domain:dev.hume.ai)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
