@@ -191,7 +191,7 @@ Hou antwoorde KORT (1-2 sinne). Luister aktief. Wys jy gee om.`
 };
 
 export default function StartCall({ accessToken }: { accessToken: string }) {
-  const { status, connect, sendAssistantInput } = useVoice();
+  const { status, connect, sendUserInput } = useVoice();
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
   const [showLanguageSelector, setShowLanguageSelector] = useState(true);
 
@@ -217,17 +217,12 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
       setShowLanguageSelector(false);
       console.log('Connected successfully!');
 
-      // Wait a moment for connection to stabilize, then trigger agent greeting
+      // Wait for connection to stabilize, then send minimal trigger to simulate user activity
       setTimeout(() => {
-        console.log('Triggering agent to start speaking');
-        const greetings: { [key in Language]: string } = {
-          en: "Hello, I'm here to help you report a workplace concern. Everything we discuss will be kept confidential. Can you tell me what happened?",
-          pt: "Olá, estou aqui para ajudá-lo a relatar uma preocupação no local de trabalho. Tudo o que discutirmos será mantido confidencial. Pode me contar o que aconteceu?",
-          sw: "Habari, niko hapa kukusaidia kuripoti wasiwasi wa kazini. Kila kitu tutakachojadili kitabaki siri. Je, unaweza kuniambia nini kilitokea?",
-          af: "Hallo, ek is hier om jou te help om 'n werkplek bekommernis aan te meld. Alles wat ons bespreek sal vertroulik gehou word. Kan jy my vertel wat gebeur het?"
-        };
-        sendAssistantInput(greetings[selectedLanguage]);
-      }, 1000);
+        console.log('Sending minimal user input to trigger agent greeting');
+        // Send a single space character to trigger the agent's greeting response
+        sendUserInput(" ");
+      }, 1500);
       
     } catch (error) {
       console.error('Connection error:', error);
