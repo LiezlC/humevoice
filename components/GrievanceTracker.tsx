@@ -20,6 +20,8 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
     if (status.value === "connected" && !hasConnectedRef.current) {
       hasConnectedRef.current = true;
 
+      console.log("📝 Creating grievance record with language:", language);
+
       // Create initial grievance record
       saveLaborGrievance({
         conversation_id: conversationIdRef.current,
@@ -30,11 +32,15 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
         .then((data) => {
           if (data && data[0]) {
             setGrievanceId(data[0].id);
-            console.log("Grievance record created:", data[0].id);
+            console.log("✅ Grievance record created successfully:", data[0].id);
+            console.log("Created at:", data[0].created_at);
+          } else {
+            console.error("❌ No data returned from Supabase");
           }
         })
         .catch((error) => {
-          console.error("Failed to create initial grievance:", error);
+          console.error("❌ Failed to create initial grievance:", error);
+          console.error("Error details:", JSON.stringify(error, null, 2));
         });
     }
   }, [status.value, language]);
@@ -85,10 +91,22 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
       };
 
       saveGrievance().catch((error) => {
-        console.error("Failed to save grievance:", error);
+        console.error("❌ Failed to save grievance:", error);
+        console.error("Error details:", JSON.stringify(error, null, 2));
       });
     }
   }, [status.value, messages, grievanceId, language]);
+
+  // Debug logging
+  useEffect(() => {
+    console.log("GrievanceTracker status:", {
+      status: status.value,
+      hasConnected: hasConnectedRef.current,
+      hasSaved: hasSavedRef.current,
+      grievanceId: grievanceId,
+      messageCount: messages.length
+    });
+  }, [status.value, messages.length, grievanceId]);
 
   return null; // This component doesn't render anything
 }
