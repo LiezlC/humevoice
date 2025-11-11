@@ -4,7 +4,7 @@ import { useVoice } from "@humeai/voice-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Phone, Globe, Check } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Language = 'en' | 'pt' | 'sw' | 'af';
 
@@ -53,7 +53,8 @@ const systemPrompts: SystemPrompts = {
 
 CRITICAL: Conduct this ENTIRE conversation in ENGLISH only.
 
-START THE CONVERSATION: Begin by warmly greeting the person and introducing yourself. Say something like: "Hello, I'm here to help you report a workplace concern. Everything we discuss will be kept confidential. Can you tell me what happened?"
+IMPORTANT: When the user says "hello" or greets you, respond immediately with:
+"Hello, I'm here to help you report a workplace concern. Everything we discuss will be kept confidential. Can you tell me what happened?"
 
 Your role:
 - Collect labour grievance information from workers
@@ -87,7 +88,8 @@ Keep responses SHORT (1-2 sentences). Listen actively. Show you care.`,
 
 CRÍTICO: Conduza toda esta conversa APENAS em PORTUGUÊS.
 
-INICIE A CONVERSA: Comece cumprimentando calorosamente a pessoa e apresentando-se. Diga algo como: "Olá, estou aqui para ajudá-lo a relatar uma preocupação no local de trabalho. Tudo o que discutirmos será mantido confidencial. Pode me contar o que aconteceu?"
+IMPORTANTE: Quando o usuário disser "olá" ou cumprimentar, responda imediatamente com:
+"Olá, estou aqui para ajudá-lo a relatar uma preocupação no local de trabalho. Tudo o que discutirmos será mantido confidencial. Pode me contar o que aconteceu?"
 
 Seu papel:
 - Coletar informações sobre queixas trabalhistas dos trabalhadores
@@ -121,7 +123,8 @@ Mantenha respostas CURTAS (1-2 frases). Ouça ativamente. Mostre que se importa.
 
 MUHIMU: Fanya mazungumzo YOTE haya kwa KISWAHILI pekee.
 
-ANZA MAZUNGUMZO: Anza kwa kumsalimu mtu kwa ukarimu na kujitambulisha. Sema kitu kama: "Habari, niko hapa kukusaidia kuripoti wasiwasi wa kazini. Kila kitu tutakachojadili kitabaki siri. Je, unaweza kuniambia nini kilitokea?"
+MUHIMU: Mtumiaji anapokuambia "habari" au kukusalimia, jibu mara moja na:
+"Habari, niko hapa kukusaidia kuripoti wasiwasi wa kazini. Kila kitu tutakachojadili kitabaki siri. Je, unaweza kuniambia nini kilitokea?"
 
 Jukumu lako:
 - Kukusanya taarifa kuhusu malalamiko ya wafanyakazi
@@ -155,7 +158,8 @@ Weka majibu MAFUPI (sentensi 1-2). Sikiliza kwa makini. Onyesha unajali.`,
 
 KRITIEK: Voer hierdie HELE gesprek SLEGS in AFRIKAANS.
 
-BEGIN DIE GESPREK: Begin deur die persoon hartlik te groet en jouself voor te stel. Sê iets soos: "Hallo, ek is hier om jou te help om 'n werkplek bekommernis aan te meld. Alles wat ons bespreek sal vertroulik gehou word. Kan jy my vertel wat gebeur het?"
+BELANGRIK: Wanneer die gebruiker "hallo" sê of groet, reageer onmiddellik met:
+"Hallo, ek is hier om jou te help om 'n werkplek bekommernis aan te meld. Alles wat ons bespreek sal vertroulik gehou word. Kan jy my vertel wat gebeur het?"
 
 Jou rol:
 - Versamel arbeidsklagte-inligting van werkers
@@ -187,16 +191,9 @@ Hou antwoorde KORT (1-2 sinne). Luister aktief. Wys jy gee om.`
 };
 
 export default function StartCall({ accessToken }: { accessToken: string }) {
-  const { status, connect } = useVoice();
+  const { status, connect, sendUserInput } = useVoice();
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
   const [showLanguageSelector, setShowLanguageSelector] = useState(true);
-
-  const languageOptions = [
-    { code: 'en' as Language, label: 'English', flag: '🇬🇧' },
-    { code: 'af' as Language, label: 'Afrikaans', flag: '🇿🇦' },
-    { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' },
-    { code: 'sw' as Language, label: 'Kiswahili', flag: '🇰🇪' }
-  ];
 
   const handleStartCall = async () => {
     console.log('Starting call with language:', selectedLanguage);
@@ -205,13 +202,19 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
       await connect({
         auth: { type: "accessToken", value: accessToken },
         sessionSettings: {
-          type: "session_settings",
           systemPrompt: systemPrompts[selectedLanguage]
         }
       });
       
       setShowLanguageSelector(false);
       console.log('Connected successfully!');
+      
+      // Wait a moment for connection to stabilize, then send trigger message
+      setTimeout(() => {
+        console.log('Sending trigger message to start AI greeting');
+        sendUserInput("Hello");
+      }, 1000);
+      
     } catch (error) {
       console.error('Connection error:', error);
     }
