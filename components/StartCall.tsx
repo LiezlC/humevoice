@@ -16,8 +16,10 @@ interface UITranslations {
   [key: string]: {
     title: string;
     subtitle: string;
+    instruction: string;
     startButton: string;
     connecting: string;
+    sayHello: string;
   };
 }
 
@@ -25,26 +27,34 @@ const uiTranslations: UITranslations = {
   en: {
     title: "Select Your Language",
     subtitle: "Choose the language for your conversation",
+    instruction: "After connecting, say 'Hello' to begin",
     startButton: "Start Conversation",
-    connecting: "Connecting..."
+    connecting: "Connecting...",
+    sayHello: "Say 'Hello' to start"
   },
   pt: {
     title: "Selecione o Seu Idioma",
     subtitle: "Escolha o idioma para a sua conversa",
+    instruction: "Após conectar, diga 'Olá' para começar",
     startButton: "Iniciar Conversa",
-    connecting: "Conectando..."
+    connecting: "Conectando...",
+    sayHello: "Diga 'Olá' para começar"
   },
   sw: {
     title: "Chagua Lugha Yako",
     subtitle: "Chagua lugha ya mazungumzo yako",
+    instruction: "Baada ya kuunganisha, sema 'Habari' kuanza",
     startButton: "Anza Mazungumzo",
-    connecting: "Inaunganisha..."
+    connecting: "Inaunganisha...",
+    sayHello: "Sema 'Habari' kuanza"
   },
   af: {
     title: "Kies Jou Taal",
     subtitle: "Kies die taal vir jou gesprek",
+    instruction: "Na verbinding, sê 'Hallo' om te begin",
     startButton: "Begin Gesprek",
-    connecting: "Verbind..."
+    connecting: "Verbind...",
+    sayHello: "Sê 'Hallo' om te begin"
   }
 };
 
@@ -191,7 +201,7 @@ Hou antwoorde KORT (1-2 sinne). Luister aktief. Wys jy gee om.`
 };
 
 export default function StartCall({ accessToken }: { accessToken: string }) {
-  const { status, connect, sendUserInput } = useVoice();
+  const { status, connect } = useVoice();
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
   const [showLanguageSelector, setShowLanguageSelector] = useState(true);
 
@@ -204,7 +214,7 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
 
   const handleStartCall = async () => {
     console.log('Starting call with language:', selectedLanguage);
-    
+
     try {
       await connect({
         auth: { type: "accessToken", value: accessToken },
@@ -213,17 +223,9 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
           systemPrompt: systemPrompts[selectedLanguage]
         }
       });
-      
+
       setShowLanguageSelector(false);
       console.log('Connected successfully!');
-
-      // Wait for connection to stabilize, then send minimal trigger to simulate user activity
-      setTimeout(() => {
-        console.log('Sending minimal user input to trigger agent greeting');
-        // Send a single space character to trigger the agent's greeting response
-        sendUserInput(" ");
-      }, 1500);
-      
     } catch (error) {
       console.error('Connection error:', error);
     }
@@ -271,6 +273,12 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
                   ))}
                 </div>
 
+                <div className="bg-muted/50 p-4 rounded-lg border border-border">
+                  <p className="text-sm text-center font-medium text-foreground">
+                    {currentTranslations.instruction}
+                  </p>
+                </div>
+
                 <Button
                   size="lg"
                   className="w-full"
@@ -281,10 +289,15 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
                 </Button>
               </>
             ) : (
-              <div className="text-center">
+              <div className="text-center space-y-4">
                 <div className="animate-pulse">
                   <Phone className="size-12 mx-auto text-primary mb-4" />
                   <p className="text-lg">{currentTranslations.connecting}</p>
+                </div>
+                <div className="bg-primary/10 p-4 rounded-lg border-2 border-primary">
+                  <p className="text-base font-semibold text-primary">
+                    {currentTranslations.sayHello}
+                  </p>
                 </div>
               </div>
             )}
