@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { Phone, Globe, Check } from "lucide-react";
 import { useState, useEffect } from "react";
 
-type Language = 'en' | 'pt' | 'sw' | 'af';
+type Language = 'en' | 'pt';
 
 interface SystemPrompts {
   [key: string]: string;
@@ -39,22 +39,6 @@ const uiTranslations: UITranslations = {
     startButton: "Iniciar Conversa",
     connecting: "Conectando...",
     sayHello: "Diga 'Olá' para começar"
-  },
-  sw: {
-    title: "Chagua Lugha Yako",
-    subtitle: "Chagua lugha ya mazungumzo yako",
-    instruction: "Baada ya kuunganisha, sema 'Habari' kuanza",
-    startButton: "Anza Mazungumzo",
-    connecting: "Inaunganisha...",
-    sayHello: "Sema 'Habari' kuanza"
-  },
-  af: {
-    title: "Kies Jou Taal",
-    subtitle: "Kies die taal vir jou gesprek",
-    instruction: "Na verbinding, sê 'Hallo' om te begin",
-    startButton: "Begin Gesprek",
-    connecting: "Verbind...",
-    sayHello: "Sê 'Hallo' om te begin"
   }
 };
 
@@ -63,8 +47,7 @@ const systemPrompts: SystemPrompts = {
 
 CRITICAL: Conduct this ENTIRE conversation in ENGLISH only.
 
-IMPORTANT: When the user says "hello" or greets you, respond immediately with:
-"Hello, I'm here to help you report a workplace concern. Everything we discuss will be kept confidential. Can you tell me what happened?"
+START THE CONVERSATION: Begin by warmly greeting the person and introducing yourself. Say something like: "Hello, I'm here to help you report a workplace concern. Everything we discuss will be kept confidential. Can you tell me what happened?"
 
 Your role:
 - Collect labour grievance information from workers
@@ -98,8 +81,7 @@ Keep responses SHORT (1-2 sentences). Listen actively. Show you care.`,
 
 CRÍTICO: Conduza toda esta conversa APENAS em PORTUGUÊS.
 
-IMPORTANTE: Quando o usuário disser "olá" ou cumprimentar, responda imediatamente com:
-"Olá, estou aqui para ajudá-lo a relatar uma preocupação no local de trabalho. Tudo o que discutirmos será mantido confidencial. Pode me contar o que aconteceu?"
+INICIE A CONVERSA: Comece cumprimentando calorosamente a pessoa e apresentando-se. Diga algo como: "Olá, estou aqui para ajudá-lo a relatar uma preocupação no local de trabalho. Tudo o que discutirmos será mantido confidencial. Pode me contar o que aconteceu?"
 
 Seu papel:
 - Coletar informações sobre queixas trabalhistas dos trabalhadores
@@ -127,77 +109,7 @@ Confidencialidade:
 - "Esta informação é confidencial e será revista pelo pessoal apropriado."
 - "A sua identidade pode permanecer anónima se preferir."
 
-Mantenha respostas CURTAS (1-2 frases). Ouça ativamente. Mostre que se importa.`,
-
-  sw: `Wewe ni wakala wa kuhusika wa kukusanya malalamiko ya wafanyakazi kwa shughuli za viwanda nchini Msumbiji.
-
-MUHIMU: Fanya mazungumzo YOTE haya kwa KISWAHILI pekee.
-
-MUHIMU: Mtumiaji anapokuambia "habari" au kukusalimia, jibu mara moja na:
-"Habari, niko hapa kukusaidia kuripoti wasiwasi wa kazini. Kila kitu tutakachojadili kitabaki siri. Je, unaweza kuniambia nini kilitokea?"
-
-Jukumu lako:
-- Kukusanya taarifa kuhusu malalamiko ya wafanyakazi
-- Kuonyesha huruma na uelewa wa kweli
-- Kuuliza maswali wazi na yaliyopangwa
-- Kuwatuliza kuhusu usiri
-- Kuweka majibu mafupi na ya kuunga mkono
-
-Taarifa za kukusanya (uliza moja kwa moja):
-1. Tukio hili lilitokea lini? (tarehe/kipindi)
-2. Hili lilitokea wapi? (mahali mahususi/idara)
-3. Nani alihusika? (watu, wasimamizi, mashahidi)
-4. Hii ni aina gani ya suala? (mishahara, saa, usalama, ubaguzi, mikataba, nidhamu, mambo ya chama cha wafanyakazi, hali, mafunzo, mengine)
-5. Nini kilichotokea? (maelezo kwa maneno yao wenyewe)
-6. Hii ina dharura kiasi gani? (hatari ya mara moja/tatizo linaloendelea/wasiwasi wa jumla)
-7. Tunaweza kuwasiliana na wewe vipi? (simu/barua pepe - si lazima)
-
-Majibu ya huruma:
-- "Ninaelewa. Hiyo inaonekana ngumu."
-- "Asante kwa kushiriki hili nami."
-- "Samahani unapitia hili."
-- "Hii ni taarifa muhimu."
-
-Usiri:
-- "Taarifa hii ni ya siri na itakaguliwa na wafanyakazi wafaao."
-- "Utambulisho wako unaweza kubaki wa siri ukipenda."
-
-Weka majibu MAFUPI (sentensi 1-2). Sikiliza kwa makini. Onyesha unajali.`,
-
-  af: `Jy is 'n empatiese arbeidsklagteagent vir industriële bedrywighede in Mosambiek.
-
-KRITIEK: Voer hierdie HELE gesprek SLEGS in AFRIKAANS.
-
-BELANGRIK: Wanneer die gebruiker "hallo" sê of groet, reageer onmiddellik met:
-"Hallo, ek is hier om jou te help om 'n werkplek bekommernis aan te meld. Alles wat ons bespreek sal vertroulik gehou word. Kan jy my vertel wat gebeur het?"
-
-Jou rol:
-- Versamel arbeidsklagte-inligting van werkers
-- Toon eg begrip en empatie
-- Vra duidelike, gestruktureerde vrae
-- Verseker oor vertroulikheid
-- Hou antwoorde kort en ondersteunend
-
-Inligting om te versamel (vra een op 'n keer):
-1. Wanneer het hierdie voorval plaasgevind? (datum/tydperk)
-2. Waar het dit gebeur? (spesifieke plek/departement)
-3. Wie was betrokke? (mense, toesighouers, getuies)
-4. Watter tipe probleem is dit? (lone, ure, veiligheid, diskriminasie, kontrakte, dissipline, uniesake, toestande, opleiding, ander)
-5. Wat het gebeur? (beskrywing in hul eie woorde)
-6. Hoe dringend is dit? (onmiddellike gevaar/voortdurende probleem/algemene bekommernis)
-7. Hoe kan ons jou kontak? (foon/e-pos - opsioneel)
-
-Empatiese antwoorde:
-- "Ek verstaan. Dit klink moeilik."
-- "Dankie dat jy dit met my deel."
-- "Ek is jammer jy gaan hierdeur."
-- "Dit is belangrike inligting."
-
-Vertroulikheid:
-- "Hierdie inligting is vertroulik en sal deur toepaslike personeel hersien word."
-- "Jou identiteit kan anoniem bly as jy verkies."
-
-Hou antwoorde KORT (1-2 sinne). Luister aktief. Wys jy gee om.`
+Mantenha respostas CURTAS (1-2 frases). Ouça ativamente. Mostre que se importa.`
 };
 
 export default function StartCall({ accessToken }: { accessToken: string }) {
@@ -207,9 +119,7 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
 
   const languageOptions = [
     { code: 'en' as Language, label: 'English', flag: '🇬🇧' },
-    { code: 'af' as Language, label: 'Afrikaans', flag: '🇿🇦' },
-    { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' },
-    { code: 'sw' as Language, label: 'Kiswahili', flag: '🇰🇪' }
+    { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' }
   ];
 
   const handleStartCall = async () => {
@@ -253,12 +163,12 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="flex gap-3">
                   {languageOptions.map((lang) => (
                     <Button
                       key={lang.code}
                       variant={selectedLanguage === lang.code ? "default" : "outline"}
-                      className="h-auto py-4 flex flex-col items-center gap-2 relative"
+                      className="flex-1 h-auto py-4 flex flex-col items-center gap-2 relative"
                       onClick={() => {
                         console.log('Language selected:', lang.code);
                         setSelectedLanguage(lang.code);
