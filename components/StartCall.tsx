@@ -3,7 +3,7 @@
 import { useVoice } from "@humeai/voice-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "./ui/button";
-import { Phone, Globe } from "lucide-react";
+import { Phone, Globe, Check } from "lucide-react";
 import { useState } from "react";
 
 type Language = 'en' | 'pt' | 'sw' | 'af';
@@ -12,10 +12,48 @@ interface SystemPrompts {
   [key: string]: string;
 }
 
+interface UITranslations {
+  [key: string]: {
+    title: string;
+    subtitle: string;
+    startButton: string;
+    connecting: string;
+  };
+}
+
+const uiTranslations: UITranslations = {
+  en: {
+    title: "Select Your Language",
+    subtitle: "Choose the language for your conversation",
+    startButton: "Start Conversation",
+    connecting: "Connecting..."
+  },
+  pt: {
+    title: "Selecione o Seu Idioma",
+    subtitle: "Escolha o idioma para a sua conversa",
+    startButton: "Iniciar Conversa",
+    connecting: "Conectando..."
+  },
+  sw: {
+    title: "Chagua Lugha Yako",
+    subtitle: "Chagua lugha ya mazungumzo yako",
+    startButton: "Anza Mazungumzo",
+    connecting: "Inaunganisha..."
+  },
+  af: {
+    title: "Kies Jou Taal",
+    subtitle: "Kies die taal vir jou gesprek",
+    startButton: "Begin Gesprek",
+    connecting: "Verbind..."
+  }
+};
+
 const systemPrompts: SystemPrompts = {
   en: `You are an empathetic labour grievance collection agent for industrial operations in Mozambique.
 
 CRITICAL: Conduct this ENTIRE conversation in ENGLISH only.
+
+START THE CONVERSATION: Begin by warmly greeting the person and introducing yourself. Say something like: "Hello, I'm here to help you report a workplace concern. Everything we discuss will be kept confidential. Can you tell me what happened?"
 
 Your role:
 - Collect labour grievance information from workers
@@ -49,6 +87,8 @@ Keep responses SHORT (1-2 sentences). Listen actively. Show you care.`,
 
 CRÍTICO: Conduza toda esta conversa APENAS em PORTUGUÊS.
 
+INICIE A CONVERSA: Comece cumprimentando calorosamente a pessoa e apresentando-se. Diga algo como: "Olá, estou aqui para ajudá-lo a relatar uma preocupação no local de trabalho. Tudo o que discutirmos será mantido confidencial. Pode me contar o que aconteceu?"
+
 Seu papel:
 - Coletar informações sobre queixas trabalhistas dos trabalhadores
 - Mostrar empatia e compreensão genuínas
@@ -81,6 +121,8 @@ Mantenha respostas CURTAS (1-2 frases). Ouça ativamente. Mostre que se importa.
 
 MUHIMU: Fanya mazungumzo YOTE haya kwa KISWAHILI pekee.
 
+ANZA MAZUNGUMZO: Anza kwa kumsalimu mtu kwa ukarimu na kujitambulisha. Sema kitu kama: "Habari, niko hapa kukusaidia kuripoti wasiwasi wa kazini. Kila kitu tutakachojadili kitabaki siri. Je, unaweza kuniambia nini kilitokea?"
+
 Jukumu lako:
 - Kukusanya taarifa kuhusu malalamiko ya wafanyakazi
 - Kuonyesha huruma na uelewa wa kweli
@@ -112,6 +154,8 @@ Weka majibu MAFUPI (sentensi 1-2). Sikiliza kwa makini. Onyesha unajali.`,
   af: `Jy is 'n empatiese arbeidsklagteagent vir industriële bedrywighede in Mosambiek.
 
 KRITIEK: Voer hierdie HELE gesprek SLEGS in AFRIKAANS.
+
+BEGIN DIE GESPREK: Begin deur die persoon hartlik te groet en jouself voor te stel. Sê iets soos: "Hallo, ek is hier om jou te help om 'n werkplek bekommernis aan te meld. Alles wat ons bespreek sal vertroulik gehou word. Kan jy my vertel wat gebeur het?"
 
 Jou rol:
 - Versamel arbeidsklagte-inligting van werkers
@@ -173,6 +217,8 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
     }
   };
 
+  const currentTranslations = uiTranslations[selectedLanguage];
+
   return (
     <AnimatePresence>
       {status.value !== "connected" ? (
@@ -187,9 +233,9 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
               <>
                 <div className="text-center space-y-2">
                   <Globe className="size-12 mx-auto text-primary" />
-                  <h2 className="text-2xl font-bold">Select Your Language</h2>
+                  <h2 className="text-2xl font-bold">{currentTranslations.title}</h2>
                   <p className="text-muted-foreground">
-                    Choose the language for your conversation
+                    {currentTranslations.subtitle}
                   </p>
                 </div>
 
@@ -198,12 +244,15 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
                     <Button
                       key={lang.code}
                       variant={selectedLanguage === lang.code ? "default" : "outline"}
-                      className="h-auto py-4 flex flex-col items-center gap-2"
+                      className="h-auto py-4 flex flex-col items-center gap-2 relative"
                       onClick={() => {
                         console.log('Language selected:', lang.code);
                         setSelectedLanguage(lang.code);
                       }}
                     >
+                      {selectedLanguage === lang.code && (
+                        <Check className="absolute top-2 right-2 size-4" />
+                      )}
                       <span className="text-3xl">{lang.flag}</span>
                       <span className="text-sm font-medium">{lang.label}</span>
                     </Button>
@@ -216,14 +265,14 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
                   onClick={handleStartCall}
                 >
                   <Phone className="size-4 mr-2" />
-                  Start Conversation
+                  {currentTranslations.startButton}
                 </Button>
               </>
             ) : (
               <div className="text-center">
                 <div className="animate-pulse">
                   <Phone className="size-12 mx-auto text-primary mb-4" />
-                  <p className="text-lg">Connecting...</p>
+                  <p className="text-lg">{currentTranslations.connecting}</p>
                 </div>
               </div>
             )}
