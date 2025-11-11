@@ -94,7 +94,7 @@ Taarifa za kukusanya (uliza moja kwa moja):
 3. Nani alihusika? (watu, wasimamizi, mashahidi)
 4. Hii ni aina gani ya suala? (mishahara, saa, usalama, ubaguzi, mikataba, nidhamu, mambo ya chama cha wafanyakazi, hali, mafunzo, mengine)
 5. Nini kilichotokea? (maelezo kwa maneno yao wenyewe)
-6. Hii ina dharura kiasi gani? (hatari ya mara moja/tatizo linaloendel ea/wasiwasi wa jumla)
+6. Hii ina dharura kiasi gani? (hatari ya mara moja/tatizo linaloendelea/wasiwasi wa jumla)
 7. Tunaweza kuwasiliana na wewe vipi? (simu/barua pepe - si lazima)
 
 Majibu ya huruma:
