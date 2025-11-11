@@ -4,8 +4,10 @@ import { VoiceProvider } from "@humeai/voice-react";
 import Messages from "./Messages";
 import Controls from "./Controls";
 import StartCall from "./StartCall";
-import { ComponentRef, useRef } from "react";
+import GrievanceTracker from "./GrievanceTracker";
+import { ComponentRef, useRef, useState } from "react";
 import { toast } from "sonner";
+import type { Language } from "@/utils/supabase";
 
 export default function ClientComponent({
   accessToken,
@@ -14,10 +16,11 @@ export default function ClientComponent({
 }) {
   const timeout = useRef<number | null>(null);
   const ref = useRef<ComponentRef<typeof Messages> | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
 
   // optional: use configId from environment variable
   const configId = process.env['NEXT_PUBLIC_HUME_CONFIG_ID'];
-  
+
   return (
     <div
       className={
@@ -47,7 +50,11 @@ export default function ClientComponent({
       >
         <Messages ref={ref} />
         <Controls />
-        <StartCall accessToken={accessToken} />
+        <StartCall
+          accessToken={accessToken}
+          onLanguageSelect={setSelectedLanguage}
+        />
+        <GrievanceTracker language={selectedLanguage} />
       </VoiceProvider>
     </div>
   );

@@ -5,7 +5,9 @@
       "WebSearch",
       "WebFetch(domain:dev.hume.ai)",
       "WebFetch(domain:github.com)",
-      "Bash(pnpm run build:*)"
+      "Bash(pnpm run build:*)",
+      "Bash(dir:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []

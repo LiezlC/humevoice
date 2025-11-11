@@ -5,21 +5,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Phone, Globe, Check } from "lucide-react";
 import { useState, useEffect } from "react";
-
-type Language = 'en' | 'pt';
-
-interface SystemPrompts {
-  [key: string]: string;
-}
+import type { Language } from "@/utils/supabase";
 
 interface UITranslations {
   [key: string]: {
     title: string;
     subtitle: string;
-    instruction: string;
     startButton: string;
     connecting: string;
-    sayHello: string;
   };
 }
 
@@ -27,92 +20,24 @@ const uiTranslations: UITranslations = {
   en: {
     title: "Select Your Language",
     subtitle: "Choose the language for your conversation",
-    instruction: "After connecting, say 'Hello' to begin",
     startButton: "Start Conversation",
-    connecting: "Connecting...",
-    sayHello: "Say 'Hello' to start"
+    connecting: "Connecting..."
   },
   pt: {
     title: "Selecione o Seu Idioma",
     subtitle: "Escolha o idioma para a sua conversa",
-    instruction: "Após conectar, diga 'Olá' para começar",
     startButton: "Iniciar Conversa",
-    connecting: "Conectando...",
-    sayHello: "Diga 'Olá' para começar"
+    connecting: "Conectando..."
   }
 };
 
-const systemPrompts: SystemPrompts = {
-  en: `You are an empathetic labour grievance collection agent for industrial operations in Mozambique.
-
-CRITICAL: Conduct this ENTIRE conversation in ENGLISH only.
-
-START THE CONVERSATION: Begin by warmly greeting the person and introducing yourself. Say something like: "Hello, I'm here to help you report a workplace concern. Everything we discuss will be kept confidential. Can you tell me what happened?"
-
-Your role:
-- Collect labour grievance information from workers
-- Show genuine empathy and understanding
-- Ask clear, structured questions
-- Reassure about confidentiality
-- Keep responses brief and supportive
-
-Information to collect (ask one at a time):
-1. When did this incident occur? (date/timeframe)
-2. Where did this happen? (specific location/department)
-3. Who was involved? (people, supervisors, witnesses)
-4. What type of issue is this? (wages, hours, safety, discrimination, contracts, discipline, union matters, conditions, training, other)
-5. What happened? (description in their own words)
-6. How urgent is this? (immediate danger/ongoing problem/general concern)
-7. How can we contact you? (phone/email - optional)
-
-Empathetic responses:
-- "I understand. That sounds difficult."
-- "Thank you for sharing this with me."
-- "I'm sorry you're experiencing this."
-- "This is important information."
-
-Confidentiality:
-- "This information is confidential and will be reviewed by appropriate personnel."
-- "Your identity can remain anonymous if you prefer."
-
-Keep responses SHORT (1-2 sentences). Listen actively. Show you care.`,
-
-  pt: `Você é um agente empático de coleta de queixas trabalhistas para operações industriais em Moçambique.
-
-CRÍTICO: Conduza toda esta conversa APENAS em PORTUGUÊS.
-
-INICIE A CONVERSA: Comece cumprimentando calorosamente a pessoa e apresentando-se. Diga algo como: "Olá, estou aqui para ajudá-lo a relatar uma preocupação no local de trabalho. Tudo o que discutirmos será mantido confidencial. Pode me contar o que aconteceu?"
-
-Seu papel:
-- Coletar informações sobre queixas trabalhistas dos trabalhadores
-- Mostrar empatia e compreensão genuínas
-- Fazer perguntas claras e estruturadas
-- Tranquilizar sobre confidencialidade
-- Manter respostas breves e solidárias
-
-Informações a coletar (perguntar uma de cada vez):
-1. Quando este incidente ocorreu? (data/período)
-2. Onde isto aconteceu? (localização específica/departamento)
-3. Quem esteve envolvido? (pessoas, supervisores, testemunhas)
-4. Que tipo de problema é este? (salários, horas, segurança, discriminação, contratos, disciplina, assuntos sindicais, condições, formação, outro)
-5. O que aconteceu? (descrição nas suas próprias palavras)
-6. Quão urgente é isto? (perigo imediato/problema contínuo/preocupação geral)
-7. Como podemos contactá-lo? (telefone/email - opcional)
-
-Respostas empáticas:
-- "Eu compreendo. Isso parece difícil."
-- "Obrigado por partilhar isto comigo."
-- "Lamento que esteja a passar por isto."
-- "Esta é informação importante."
-
-Confidencialidade:
-- "Esta informação é confidencial e será revista pelo pessoal apropriado."
-- "A sua identidade pode permanecer anónima se preferir."
-
-Mantenha respostas CURTAS (1-2 frases). Ouça ativamente. Mostre que se importa.`
-};
-
-export default function StartCall({ accessToken }: { accessToken: string }) {
+export default function StartCall({
+  accessToken,
+  onLanguageSelect
+}: {
+  accessToken: string;
+  onLanguageSelect?: (language: Language) => void;
+}) {
   const { status, connect } = useVoice();
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
   const [showLanguageSelector, setShowLanguageSelector] = useState(true);
@@ -129,6 +54,11 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
 
   const handleStartCall = async () => {
     console.log('Starting call with language:', selectedLanguage);
+
+    // Notify parent component of language selection
+    if (onLanguageSelect) {
+      onLanguageSelect(selectedLanguage);
+    }
 
     try {
       await connect({
@@ -185,12 +115,6 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
                   ))}
                 </div>
 
-                <div className="bg-muted/50 p-4 rounded-lg border border-border">
-                  <p className="text-sm text-center font-medium text-foreground">
-                    {currentTranslations.instruction}
-                  </p>
-                </div>
-
                 <Button
                   size="lg"
                   className="w-full"
@@ -201,15 +125,10 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
                 </Button>
               </>
             ) : (
-              <div className="text-center space-y-4">
+              <div className="text-center">
                 <div className="animate-pulse">
                   <Phone className="size-12 mx-auto text-primary mb-4" />
                   <p className="text-lg">{currentTranslations.connecting}</p>
-                </div>
-                <div className="bg-primary/10 p-4 rounded-lg border-2 border-primary">
-                  <p className="text-base font-semibold text-primary">
-                    {currentTranslations.sayHello}
-                  </p>
                 </div>
               </div>
             )}
