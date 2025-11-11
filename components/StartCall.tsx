@@ -1,7 +1,7 @@
 "use client";
 
 import { useVoice } from "@humeai/voice-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Phone, Globe } from "lucide-react";
 import { useState } from "react";
