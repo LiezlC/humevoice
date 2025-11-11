@@ -195,13 +195,6 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
   const [showLanguageSelector, setShowLanguageSelector] = useState(true);
 
-  const languageOptions = [
-    { code: 'en' as Language, label: 'English', flag: '🇬🇧' },
-    { code: 'af' as Language, label: 'Afrikaans', flag: '🇿🇦' },
-    { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' },
-    { code: 'sw' as Language, label: 'Kiswahili', flag: '🇰🇪' }
-  ];
-
   const handleStartCall = async () => {
     console.log('Starting call with language:', selectedLanguage);
     
@@ -209,7 +202,6 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
       await connect({
         auth: { type: "accessToken", value: accessToken },
         sessionSettings: {
-          type: "session_settings",
           systemPrompt: systemPrompts[selectedLanguage]
         }
       });
