@@ -14,6 +14,7 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
   const conversationIdRef = useRef<string>(`conv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const hasConnectedRef = useRef(false);
   const hasSavedRef = useRef(false);
+  const savedMessagesRef = useRef<any[]>([]);
 
   // Save initial record when conversation starts
   useEffect(() => {
@@ -45,13 +46,23 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
     }
   }, [status.value, language]);
 
+  // Capture messages while connected (before they get cleared)
+  useEffect(() => {
+    if (status.value === "connected" && messages.length > 0) {
+      savedMessagesRef.current = [...messages];
+      console.log("💾 Captured", messages.length, "messages");
+    }
+  }, [messages, status.value]);
+
   // Save conversation when it ends
   useEffect(() => {
-    if (status.value === "disconnected" && hasConnectedRef.current && !hasSavedRef.current && messages.length > 0) {
+    if (status.value === "disconnected" && hasConnectedRef.current && !hasSavedRef.current && savedMessagesRef.current.length > 0) {
       hasSavedRef.current = true;
 
-      // Build full transcript
-      const transcript = messages
+      console.log("💬 Saving conversation with", savedMessagesRef.current.length, "messages");
+
+      // Build full transcript from saved messages
+      const transcript = savedMessagesRef.current
         .filter((msg) => msg.type === "user_message" || msg.type === "assistant_message")
         .map((msg) => {
           const role = msg.message.role === "user" ? "User" : "Agent";
@@ -60,7 +71,7 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
         .join("\n\n");
 
       // Extract grievance data from messages
-      const grievanceData = extractGrievanceData(messages, transcript);
+      const grievanceData = extractGrievanceData(savedMessagesRef.current, transcript);
 
       // Translate to English if not English
       const saveGrievance = async () => {
@@ -104,7 +115,8 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
       hasConnected: hasConnectedRef.current,
       hasSaved: hasSavedRef.current,
       grievanceId: grievanceId,
-      messageCount: messages.length
+      messageCount: messages.length,
+      savedMessageCount: savedMessagesRef.current.length
     });
   }, [status.value, messages.length, grievanceId]);
 
