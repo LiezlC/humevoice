@@ -161,6 +161,7 @@ export default function StartCall({ accessToken }: { accessToken: string }) {
       await connect({
         auth: { type: "accessToken", value: accessToken },
         sessionSettings: {
+          type: "session_settings",
           systemPrompt: systemPrompts[selectedLanguage]
         }
       });
