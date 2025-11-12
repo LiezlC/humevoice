@@ -127,6 +127,35 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
           const { updateLaborGrievance } = await import("@/utils/supabase");
           const result = await updateLaborGrievance(grievanceId, updateData);
           console.log("✅ Database update result:", result);
+
+          // Trigger field extraction API to populate detailed fields
+          console.log("🤖 Triggering AI field extraction...");
+          try {
+            const extractResponse = await fetch('/api/extract-fields', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                grievanceId: grievanceId
+              })
+            });
+
+            if (extractResponse.ok) {
+              const extractResult = await extractResponse.json();
+              if (extractResult.skipped) {
+                console.log("⊘ Field extraction skipped (already processed)");
+              } else {
+                console.log("✅ Field extraction completed:", extractResult.extracted);
+              }
+            } else {
+              const errorData = await extractResponse.json();
+              console.error("❌ Field extraction API error:", errorData);
+            }
+          } catch (extractError) {
+            console.error("❌ Field extraction request failed:", extractError);
+            // Don't throw - we still have the basic transcript saved
+          }
         }
       };
 
@@ -152,54 +181,34 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
   return null; // This component doesn't render anything
 }
 
-// Helper function to extract structured data from conversation
+// Helper function to extract basic structured data from conversation
+// Note: Detailed field extraction is now handled by AI via /api/extract-fields
 function extractGrievanceData(messages: any[], transcript: string) {
   const textContent = transcript.toLowerCase();
-
-  // Simple keyword extraction (this is basic - could be improved with AI)
   const data: any = {};
 
-  // Extract category based on keywords
-  if (textContent.includes("wage") || textContent.includes("salary") || textContent.includes("pay")) {
-    data.category = "wages";
-  } else if (textContent.includes("hour") || textContent.includes("overtime")) {
-    data.category = "hours";
-  } else if (textContent.includes("safe") || textContent.includes("danger") || textContent.includes("injury")) {
-    data.category = "safety";
-  } else if (textContent.includes("discriminat") || textContent.includes("harass")) {
-    data.category = "discrimination";
-  } else if (textContent.includes("contract")) {
-    data.category = "contracts";
-  } else if (textContent.includes("disciplin")) {
-    data.category = "discipline";
-  } else if (textContent.includes("union")) {
-    data.category = "union";
-  } else if (textContent.includes("condition")) {
-    data.category = "conditions";
-  } else if (textContent.includes("training")) {
-    data.category = "training";
-  }
-
-  // Extract urgency
+  // Extract urgency based on keywords (simple heuristic)
   if (textContent.includes("urgent") || textContent.includes("immediate") || textContent.includes("danger")) {
     data.urgency = "high";
   } else if (textContent.includes("critical") || textContent.includes("emergency")) {
     data.urgency = "critical";
+  } else {
+    data.urgency = "medium"; // Default to medium
   }
 
-  // Extract description from first substantial user message
+  // Extract basic description from first substantial user message
   const userMessages = messages.filter(
     (msg) => msg.type === "user_message" && msg.message.content.length > 20
   );
 
   if (userMessages.length > 0) {
-    // Use the longest user message as description
+    // Use the longest user message as temporary description
     const longestMessage = userMessages.reduce((longest, current) =>
       current.message.content.length > longest.message.content.length ? current : longest
     );
     data.description = longestMessage.message.content;
   } else {
-    data.description = "See transcript for details";
+    data.description = "Conversation in progress - see transcript";
   }
 
   return data;
