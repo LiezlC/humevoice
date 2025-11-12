@@ -19,7 +19,8 @@
       "Bash(npm cache clean:*)",
       "Bash(yarn --version:*)",
       "Bash(npm cache verify:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npx pnpm install)"
     ],
     "deny": [],
     "ask": []
