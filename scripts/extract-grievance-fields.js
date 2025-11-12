@@ -39,7 +39,7 @@ async function extractFields(transcript, language) {
   "incident_date": "When the issue started (e.g., 'Early March 2024', 'August 2024', '6 weeks ago'), otherwise null",
   "incident_location": "Specific location/department (e.g., 'Processing Plant B, Palma district', 'Security sector'), otherwise null",
   "people_involved": "Names of supervisors/managers mentioned (e.g., 'Supervisor Carlos', 'Roberto, Operations Manager'), otherwise null",
-  "category": "One of: wages, overtime, safety, discrimination, harassment, working_conditions, other",
+  "category": "One of: wages, hours, safety, discrimination, contracts, discipline, union, conditions, training, other",
   "description": "2-3 sentence summary in English of the main issue"
 }
 
