@@ -93,13 +93,21 @@ async function processGrievance(grievance) {
   console.log(`Created: ${grievance.created_at}`);
   
   // Check if already processed
-  if (grievance.submitter_name || grievance.category) {
+  if (grievance.submitter_name) {
     console.log('⊘ Already processed, skipping');
     return { success: true, skipped: true };
   }
-  
+
+  // Use English transcript if available, otherwise original
+  const transcript = grievance.transcript_en || grievance.transcript;
+
+  if (!transcript || transcript.length < 10) {
+    console.log('⊘ No valid transcript, skipping');
+    return { success: false, error: 'No valid transcript' };
+  }
+
   // Extract fields
-  const extracted = await extractFields(grievance.transcript, grievance.language);
+  const extracted = await extractFields(transcript, grievance.language);
   
   if (!extracted) {
     return { success: false, error: 'Extraction failed' };
