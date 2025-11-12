@@ -84,11 +84,27 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
         // Only translate non-English conversations
         if (language !== 'en') {
           try {
-            const { translateToEnglish } = await import("@/utils/translate");
-            transcriptEn = await translateToEnglish(transcript, language as 'pt' | 'af' | 'sw');
-            console.log("Translation completed for", language);
+            console.log("🌐 Requesting translation for", language);
+            const response = await fetch('/api/translate', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                text: transcript,
+                sourceLanguage: language
+              })
+            });
+
+            if (!response.ok) {
+              throw new Error(`Translation API returned ${response.status}`);
+            }
+
+            const data = await response.json();
+            transcriptEn = data.translatedText;
+            console.log("✅ Translation completed for", language);
           } catch (error) {
-            console.error("Translation error:", error);
+            console.error("❌ Translation error:", error);
             transcriptEn = `[Translation failed]\n\n${transcript}`;
           }
         }
