@@ -123,7 +123,11 @@ ${transcript}`;
     });
 
     // Extract JSON from response
-    const responseText = message.content[0].text;
+    const firstContent = message.content[0];
+    if (firstContent.type !== 'text') {
+      throw new Error('Unexpected response type from Claude API');
+    }
+    const responseText = firstContent.text;
 
     // Try to parse JSON (handle potential markdown code blocks)
     let jsonText = responseText.trim();
