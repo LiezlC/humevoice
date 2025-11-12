@@ -98,8 +98,15 @@ async function processGrievance(grievance) {
     return { success: true, skipped: true };
   }
 
-  // Use English transcript if available, otherwise original
-  const transcript = grievance.transcript_en || grievance.transcript;
+  // Use English transcript if available and valid, otherwise use original language
+  let transcript = grievance.transcript_en;
+
+  // If translation failed or doesn't exist, use original transcript
+  // Claude can analyze Portuguese, Swahili, Afrikaans directly - no translation needed!
+  if (!transcript || transcript.includes('[Translation failed]') || transcript.includes('Translation unavailable')) {
+    transcript = grievance.transcript;
+    console.log('ℹ Using original language transcript (translation not available)');
+  }
 
   if (!transcript || transcript.length < 10) {
     console.log('⊘ No valid transcript, skipping');
