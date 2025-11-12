@@ -1,8 +1,9 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { Moon, Sun, Briefcase } from "lucide-react";
+import { Moon, Sun, Briefcase, BarChart3 } from "lucide-react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export const Nav = () => {
   const { theme, setTheme } = useTheme();
@@ -19,7 +20,17 @@ export const Nav = () => {
         </div>
       </div>
       
-      <div className={"flex items-center gap-1"}>
+      <div className={"flex items-center gap-2"}>
+        <Link href="/dashboard">
+          <Button
+            variant={"outline"}
+            className={"flex items-center gap-1.5"}
+          >
+            <BarChart3 className={"size-4"} />
+            <span>Dashboard</span>
+          </Button>
+        </Link>
+
         <Button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           variant={"ghost"}
