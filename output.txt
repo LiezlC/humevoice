@@ -1,0 +1,350 @@
+
+> hume-evi-next-js-starter@0.1.0 extract-fields
+> node scripts/extract-grievance-fields.js
+
+============================================================
+Labor Grievance Field Extractor
+============================================================
+✓ Environment configured
+
+Fetching grievances from database...
+(node:13816) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Liezl/Documents/Github/humevoice/scripts/extract-grievance-fields.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\Liezl\Documents\Github\humevoice\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ Found 42 grievance(s)
+
+Processing grievance 3c64080d-0a92-409e-88b1-f1c49ab93c40...
+Language: en
+Created: 2025-11-12T12:17:46.290307+00:00
+⊘ Already processed, skipping
+
+Processing grievance c4277085-27a7-4763-b71c-74df7ca964c7...
+Language: en
+Created: 2025-11-12T12:16:18.668983+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "This is the initial greeting from an agent to help report a workplace concern. No specific incident or issue has been described yet."
+}
+✓ Database updated successfully
+
+Processing grievance 14bc5f2b-02bd-4f07-8af9-0632e4a6cae5...
+Language: pt
+Created: 2025-11-12T11:43:43.728473+00:00
+✗ Error extracting fields: Expected double-quoted property name in JSON at position 535 (line 9 column 1)
+
+Processing grievance d93a516c-dec4-45a8-8d33-e113eadc1b24...
+Language: pt
+Created: 2025-11-12T11:43:31.415689+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Unable to analyze grievance due to translation failure. No specific details about the labor issue could be extracted from the provided transcript."
+}
+✓ Database updated successfully
+
+Processing grievance d92d0017-43a7-4639-8158-1ce14c348e41...
+Language: pt
+Created: 2025-11-12T11:36:03.187104+00:00
+✗ Error extracting fields: Unexpected token 'I', "I cannot e"... is not valid JSON
+
+Processing grievance fe3424b9-0927-400f-b56a-dc2d60017b07...
+Language: pt
+Created: 2025-11-12T11:35:03.167368+00:00
+✗ Error extracting fields: Unexpected token 'L', "Looking at"... is not valid JSON
+
+Processing grievance 7706c4c3-69a5-480a-b9fb-7560005aea25...
+Language: pt
+Created: 2025-11-12T11:34:49.835621+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Translation of the transcript failed, preventing analysis of the grievance content. Unable to determine the nature of the labor issue from the provided information."
+}
+✓ Database updated successfully
+
+Processing grievance d09fa5c3-9e56-4246-9e32-eaea296e173b...
+Language: pt
+Created: 2025-11-12T11:34:17.753073+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Insufficient information provided in the transcript to determine the nature of the grievance or complaint."
+}
+✓ Database updated successfully
+
+Processing grievance 019ed6ae-c58c-4c3f-9c01-cf3e0ab149a5...
+Language: pt
+Created: 2025-11-12T11:33:59.246192+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Translation of the transcript failed, preventing analysis of the grievance details. Unable to determine the specific nature of the labor issue from the provided content."
+}
+✓ Database updated successfully
+
+Processing grievance 84602809-0f5e-49b7-a8c7-bc5c1d9e1394...
+Language: pt
+Created: 2025-11-12T11:33:34.079957+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Translation of the transcript failed, preventing analysis of the labor grievance content. Unable to determine the specific nature of the complaint or incident details."
+}
+✓ Database updated successfully
+
+Processing grievance d0cebd15-f400-4661-85c3-d99287bd6377...
+Language: pt
+Created: 2025-11-12T11:33:05.882739+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Unable to analyze grievance details due to translation failure of the Portuguese transcript."
+}
+✓ Database updated successfully
+
+Processing grievance 7e1b034c-bd4b-4e7b-a962-d9b085e28230...
+Language: en
+Created: 2025-11-12T11:19:24.798232+00:00
+⊘ Already processed, skipping
+
+Processing grievance 62ddd068-1ff2-4dbc-ab83-6f3a33152f34...
+Language: en
+Created: 2025-11-12T11:19:05.149126+00:00
+✗ Error extracting fields: Unexpected token 'I', "I cannot e"... is not valid JSON
+
+Processing grievance 8bd33cde-1b17-481c-8347-52f05ce757d8...
+Language: pt
+Created: 2025-11-12T11:16:16.89882+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": "Monday morning",
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Worker was informed of layoff on their last day of work on Monday morning around ten o'clock. They are seeking guidance on proper procedures to follow regarding the termination."
+}
+✓ Database updated successfully
+
+Processing grievance beb45e3f-610c-4ba5-936b-422a5945ee9e...
+Language: pt
+Created: 2025-11-12T11:11:15.735795+00:00
+✗ Error extracting fields: Unexpected token 'I', "I cannot e"... is not valid JSON
+
+Processing grievance aa5a6032-ec1b-4955-b2f2-eb94051f850f...
+Language: pt
+Created: 2025-11-12T11:11:03.725472+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Translation of the transcript failed, preventing analysis of the grievance content. Unable to determine the nature of the labor issue or extract relevant details."
+}
+✓ Database updated successfully
+
+Processing grievance 44d7b78b-af35-4b95-8335-5a0093651fb7...
+Language: pt
+Created: 2025-11-12T04:24:13.167944+00:00
+✓ Extracted fields: {
+  "submitter_name": "Grace",
+  "submitter_contact": "[email protected]",
+  "incident_date": "August 2024",
+  "incident_location": "Security sector",
+  "people_involved": "Mr. Roberto (supervisor), Operations Manager",
+  "category": "overtime",
+  "description": "Security sector employees are required to work twelve-hour shifts without overtime pay, with threats of termination for refusal. This has been ongoing since August 2024 and affects the entire security team."
+}
+✗ Database update failed: new row for relation "labor_grievances" violates check constraint "labor_grievances_category_check"
+
+Processing grievance 11eec74f-b9eb-4d0a-b0ae-08c25c0fc8b4...
+Language: pt
+Created: 2025-11-12T04:23:36.655355+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "No specific workplace issue has been reported yet. The agent has provided an opening statement offering confidential assistance with workplace concerns, but the caller has not yet shared any details about their situation."
+}
+✓ Database updated successfully
+
+Processing grievance 5d9afe17-c841-42ec-9323-36511ee26630...
+Language: pt
+Created: 2025-11-12T04:23:13.531489+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "Unable to analyze grievance due to translation failure. No specific details about the labor issue could be extracted from the provided transcript."
+}
+✓ Database updated successfully
+
+Processing grievance 197b4dcc-b944-45f0-b33f-0ffe6c89a6ce...
+Language: en
+Created: 2025-11-12T04:15:31.484425+00:00
+⊘ Already processed, skipping
+
+Processing grievance 9b67a77a-c158-4ccd-9164-a696924553eb...
+Language: en
+Created: 2025-11-12T04:14:43.886034+00:00
+✓ Extracted fields: {
+  "submitter_name": null,
+  "submitter_contact": null,
+  "incident_date": null,
+  "incident_location": null,
+  "people_involved": null,
+  "category": "other",
+  "description": "This appears to be the opening of a grievance call where the agent is introducing the confidential reporting process. No specific workplace issue has been described yet."
+}
+✓ Database updated successfully
+
+Processing grievance 06e7c7a4-4729-42a1-969d-f64d8e26436d...
+Language: pt
+Created: 2025-11-12T04:03:22.684578+00:00
+⊘ Already processed, skipping
+
+Processing grievance a358c418-3f62-4e4b-ba16-c154b27311bb...
+Language: en
+Created: 2025-11-12T03:35:48.224809+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 7d07ebf1-5869-43d7-a2a0-9dfe315a9e48...
+Language: en
+Created: 2025-11-12T03:33:27.990154+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 87a0c530-127d-4c58-ba6b-8fc6cb750a91...
+Language: en
+Created: 2025-11-12T03:32:01.164083+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 22f18907-6fc1-456b-8286-1eb619871828...
+Language: en
+Created: 2025-11-12T03:30:20.838364+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 1a16f5be-74b7-40ea-abc0-b646e5a46ebf...
+Language: en
+Created: 2025-11-12T03:30:01.035226+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance e4b37d02-2f2d-4d73-859d-1df4caa035cc...
+Language: en
+Created: 2025-11-12T03:29:34.610043+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 487cdf7f-5b1d-44cc-8904-4fc9d7488f70...
+Language: en
+Created: 2025-11-12T03:29:03.386428+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance bf47510e-780c-44d9-bc14-a87c52cd25aa...
+Language: en
+Created: 2025-11-12T03:25:13.346039+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 5cb228e9-5bc4-4bfd-8cc3-08a78b7f03e0...
+Language: pt
+Created: 2025-11-12T02:05:58.861767+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance d476e861-d1c2-4e5e-8e7a-ab788608d650...
+Language: pt
+Created: 2025-11-12T02:05:34.405816+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 4a4cbfa3-a264-480a-a66f-609ab153a447...
+Language: en
+Created: 2025-11-12T01:18:07.711942+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance a80bec14-42f9-48c1-ae81-742b5fada88c...
+Language: en
+Created: 2025-11-11T18:28:28.021009+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 0a34935a-0274-40cc-b977-a79e04f60406...
+Language: en
+Created: 2025-11-11T18:15:38.900255+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 8afa57fd-744b-44ab-ba7a-b86b4d8e8b99...
+Language: en
+Created: 2025-11-11T18:13:05.868599+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance b7415a21-2ca5-4ec6-871e-e8886020bd13...
+Language: en
+Created: 2025-11-11T17:53:47.735238+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 636e6025-e741-4710-a825-14e88ff4c54a...
+Language: en
+Created: 2025-11-11T17:53:28.713501+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 943dd5da-eb3f-4a48-b043-68aeeb1e2ac6...
+Language: pt
+Created: 2025-11-11T17:53:00.688125+00:00
+⊘ No valid transcript, skipping
+
+Processing grievance 4aef868e-db7c-48f4-9099-91399a8b2bf9...
+Language: pt
+Created: 2025-11-10T17:47:32.287522+00:00
+⊘ Already processed, skipping
+
+Processing grievance 98a2cfae-bb5c-4839-a2f7-6576b46009ed...
+Language: sw
+Created: 2025-11-10T17:47:32.287522+00:00
+⊘ Already processed, skipping
+
+Processing grievance ceab2a28-a9da-4f78-9861-116c257fea23...
+Language: en
+Created: 2025-11-10T17:47:32.287522+00:00
+⊘ Already processed, skipping
+
+============================================================
+Summary:
+  Total grievances: 42
+  Processed: 12
+  Skipped: 7
+  Failed: 23
+============================================================
