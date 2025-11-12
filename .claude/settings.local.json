@@ -13,7 +13,13 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(if not exist scripts mkdir scripts)",
-      "Bash(exit 0)"
+      "Bash(exit 0)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run extract-fields:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(yarn --version:*)",
+      "Bash(npm cache verify:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
