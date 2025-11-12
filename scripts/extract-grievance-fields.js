@@ -2,12 +2,20 @@
 /**
  * Extract structured data from labor grievance transcripts
  * Uses Claude API to parse transcripts and populate database fields
- * 
+ *
  * Usage: node extract-grievance-fields.js
  */
 
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import Anthropic from '@anthropic-ai/sdk';
 import { createClient } from '@supabase/supabase-js';
+
+// Load environment variables from .env.local
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: join(__dirname, '..', '.env.local') });
 
 // Initialize clients
 const anthropic = new Anthropic({
