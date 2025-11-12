@@ -70,8 +70,12 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
         })
         .join("\n\n");
 
+      console.log("📝 Transcript length:", transcript.length, "characters");
+      console.log("📝 First 200 chars:", transcript.substring(0, 200));
+
       // Extract grievance data from messages
       const grievanceData = extractGrievanceData(savedMessagesRef.current, transcript);
+      console.log("📊 Extracted data:", grievanceData);
 
       // Translate to English if not English
       const saveGrievance = async () => {
@@ -91,13 +95,22 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
 
         // Update the grievance record
         if (grievanceId) {
-          const { updateLaborGrievance } = await import("@/utils/supabase");
-          await updateLaborGrievance(grievanceId, {
+          const updateData = {
             transcript: transcript,
             transcript_en: transcriptEn,
             ...grievanceData
+          };
+
+          console.log("💾 Updating database with:", {
+            grievanceId,
+            transcriptLength: transcript.length,
+            transcript_enLength: transcriptEn.length,
+            ...grievanceData
           });
-          console.log("Grievance updated successfully with translation");
+
+          const { updateLaborGrievance } = await import("@/utils/supabase");
+          const result = await updateLaborGrievance(grievanceId, updateData);
+          console.log("✅ Database update result:", result);
         }
       };
 
