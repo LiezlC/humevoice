@@ -197,6 +197,9 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
 
     // Process each tool call
     toolCallMessages.forEach(async (toolMsg: any) => {
+      // Debug: log the entire message structure
+      console.log("🔍 Raw tool message:", JSON.stringify(toolMsg, null, 2));
+
       const { toolCallId, toolName, parameters } = toolMsg;
 
       // Mark as processed immediately to avoid duplicates
