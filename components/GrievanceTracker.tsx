@@ -9,12 +9,13 @@ interface GrievanceTrackerProps {
 }
 
 export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
-  const { messages, status } = useVoice();
+  const { messages, status, sendToolMessage } = useVoice();
   const [grievanceId, setGrievanceId] = useState<string | null>(null);
   const conversationIdRef = useRef<string>(`conv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const hasConnectedRef = useRef(false);
   const hasSavedRef = useRef(false);
   const savedMessagesRef = useRef<any[]>([]);
+  const processedToolCallsRef = useRef<Set<string>>(new Set());
 
   // Save initial record when conversation starts
   useEffect(() => {
@@ -177,6 +178,111 @@ export default function GrievanceTracker({ language }: GrievanceTrackerProps) {
       savedMessageCount: savedMessagesRef.current.length
     });
   }, [status.value, messages.length, grievanceId]);
+
+  // Handle tool calls from EVI in real-time
+  useEffect(() => {
+    // Only process tool calls if we have a grievance ID and are connected
+    if (!grievanceId || status.value !== "connected") {
+      return;
+    }
+
+    // Look for tool call messages
+    const toolCallMessages = messages.filter(
+      (msg: any) => msg.type === "tool_call" && !processedToolCallsRef.current.has(msg.toolCallId)
+    );
+
+    if (toolCallMessages.length === 0) {
+      return;
+    }
+
+    // Process each tool call
+    toolCallMessages.forEach(async (toolMsg: any) => {
+      const { toolCallId, toolName, parameters } = toolMsg;
+
+      // Mark as processed immediately to avoid duplicates
+      processedToolCallsRef.current.add(toolCallId);
+
+      console.log("🔧 Tool call received:", toolName, parameters);
+
+      try {
+        // Map tool names to database field names
+        const toolToFieldMap: { [key: string]: string } = {
+          save_submitter_name: 'submitter_name',
+          save_contact_info: 'submitter_contact',
+          save_incident_date: 'incident_date',
+          save_incident_location: 'incident_location',
+          save_people_involved: 'people_involved',
+          save_category: 'category',
+          save_urgency: 'urgency',
+          save_description: 'description'
+        };
+
+        const fieldName = toolToFieldMap[toolName];
+
+        if (!fieldName) {
+          throw new Error(`Unknown tool: ${toolName}`);
+        }
+
+        // Extract the field value from parameters
+        const fieldValue = parameters.name ||
+                          parameters.contact ||
+                          parameters.date ||
+                          parameters.location ||
+                          parameters.people ||
+                          parameters.category ||
+                          parameters.urgency ||
+                          parameters.description;
+
+        if (!fieldValue) {
+          throw new Error('No field value provided in parameters');
+        }
+
+        // Save to database via API
+        const response = await fetch('/api/save-field', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            grievanceId: grievanceId,
+            fieldName: fieldName,
+            fieldValue: fieldValue
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to save field');
+        }
+
+        console.log(`✅ Tool call success: ${toolName} -> ${fieldName} = ${fieldValue}`);
+
+        // Send success response back to EVI
+        if (sendToolMessage) {
+          sendToolMessage({
+            type: 'tool_response',
+            toolCallId: toolCallId,
+            content: `Successfully saved ${fieldName}: ${fieldValue}`
+          });
+        }
+
+      } catch (error: any) {
+        console.error(`❌ Tool call error for ${toolName}:`, error);
+
+        // Send error response back to EVI
+        if (sendToolMessage) {
+          sendToolMessage({
+            type: 'tool_error',
+            toolCallId: toolCallId,
+            error: error.message || 'Failed to save field',
+            content: `Could not save the information. Please continue with the conversation.`
+          });
+        }
+      }
+    });
+
+  }, [messages, grievanceId, status.value, sendToolMessage]);
 
   return null; // This component doesn't render anything
 }

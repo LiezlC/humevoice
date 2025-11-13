@@ -1,0 +1,127 @@
+{
+  "tools": [
+    {
+      "name": "save_submitter_name",
+      "description": "Save the worker's name after confirming spelling. Only call this after you have confirmed the correct spelling with the worker using the phonetic alphabet (Alpha, Bravo, Charlie, etc.).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The worker's full name, confirmed and spelled out"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    {
+      "name": "save_contact_info",
+      "description": "Save the worker's contact information (phone or email). Only call after confirming the contact details.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "contact": {
+            "type": "string",
+            "description": "Phone number or email address"
+          }
+        },
+        "required": ["contact"]
+      }
+    },
+    {
+      "name": "save_incident_date",
+      "description": "Save when the incident occurred. Call this after the worker provides the timeframe.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "When the incident occurred (e.g., 'Early March 2024', 'August 2024', '6 weeks ago', 'Yesterday')"
+          }
+        },
+        "required": ["date"]
+      }
+    },
+    {
+      "name": "save_incident_location",
+      "description": "Save where the incident happened. Call this after collecting the specific location or department.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "Specific location, department, or area (e.g., 'Processing Plant B', 'Security sector', 'Warehouse')"
+          }
+        },
+        "required": ["location"]
+      }
+    },
+    {
+      "name": "save_people_involved",
+      "description": "Save the names of people involved (supervisors, managers, witnesses). Call this after collecting names.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "people": {
+            "type": "string",
+            "description": "Names of supervisors, managers, or witnesses mentioned (e.g., 'Supervisor Carlos', 'Manager Roberto')"
+          }
+        },
+        "required": ["people"]
+      }
+    },
+    {
+      "name": "save_category",
+      "description": "Save the type/category of grievance. Call this after the worker identifies what type of issue this is.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": ["wages", "hours", "safety", "discrimination", "contracts", "discipline", "union", "conditions", "training", "other"],
+            "description": "The category that best matches the grievance"
+          }
+        },
+        "required": ["category"]
+      }
+    },
+    {
+      "name": "save_urgency",
+      "description": "Save the urgency level of the grievance. Call this after determining how urgent the issue is.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "urgency": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low"],
+            "description": "How urgent the issue is (critical=immediate danger, high=ongoing problem, medium=needs attention, low=general concern)"
+          }
+        },
+        "required": ["urgency"]
+      }
+    },
+    {
+      "name": "save_description",
+      "description": "Save a brief summary of the grievance. Call this after the worker has described what happened.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "A concise summary of the incident in the worker's own words"
+          }
+        },
+        "required": ["description"]
+      }
+    }
+  ],
+  "instructions": {
+    "step1": "Go to Hume AI Platform (platform.hume.ai)",
+    "step2": "Navigate to your EVI configurations",
+    "step3": "Edit your English config (989fee36-dddf-459f-b2bf-e90644d3aadf)",
+    "step4": "Add these tool definitions in the 'Tools' section",
+    "step5": "Make sure you have a supplemental LLM configured (Claude/Anthropic is already in your .env)",
+    "step6": "Repeat for Portuguese config (f1ff7e4d-ea13-4d3f-a1fb-2f3d36580aae)",
+    "step7": "Update your system prompt to instruct the agent on when to use each tool"
+  }
+}
