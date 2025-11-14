@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { RefreshCw, Calendar, MapPin, User, AlertCircle, ArrowLeft, Phone } from 'lucide-react';
+import { RefreshCw, Calendar, MapPin, User, AlertCircle, ArrowLeft, Phone, Download } from 'lucide-react';
 import Link from 'next/link';
 
 // Initialize Supabase client
@@ -32,6 +32,7 @@ interface Grievance {
 export default function Dashboard() {
   const [grievances, setGrievances] = useState<Grievance[]>([]);
   const [loading, setLoading] = useState(true);
+  const [downloadingAudio, setDownloadingAudio] = useState<string | null>(null);
   const [filters, setFilters] = useState({
     dateFrom: '',
     dateTo: '',
@@ -122,6 +123,32 @@ export default function Dashboard() {
       case 'medium': return 'bg-yellow-100 text-yellow-800';
       case 'low': return 'bg-green-100 text-green-800';
       default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  // Download audio recording
+  const downloadAudio = async (conversationId: string) => {
+    setDownloadingAudio(conversationId);
+    try {
+      const response = await fetch(`/api/get-audio?chat_id=${conversationId}`);
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.error('Failed to get audio URL:', error);
+        alert(error.error || 'Failed to download audio');
+        return;
+      }
+
+      const data = await response.json();
+
+      // Open the signed URL in a new tab to download
+      window.open(data.audioUrl, '_blank');
+
+    } catch (error) {
+      console.error('Error downloading audio:', error);
+      alert('Failed to download audio recording');
+    } finally {
+      setDownloadingAudio(null);
     }
   };
 
@@ -299,6 +326,7 @@ export default function Dashboard() {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Urgency</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Audio</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -326,6 +354,16 @@ export default function Dashboard() {
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-600 max-w-md truncate">
                       {grievance.description}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <button
+                        onClick={() => downloadAudio(grievance.conversation_id)}
+                        disabled={downloadingAudio === grievance.conversation_id}
+                        className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded transition disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Download className={`w-3 h-3 ${downloadingAudio === grievance.conversation_id ? 'animate-pulse' : ''}`} />
+                        {downloadingAudio === grievance.conversation_id ? 'Loading...' : 'Download'}
+                      </button>
                     </td>
                   </tr>
                 ))}
