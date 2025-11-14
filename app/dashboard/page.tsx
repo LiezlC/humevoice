@@ -221,7 +221,25 @@ export default function Dashboard() {
 
         {/* Additional Filters */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Additional Filters</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold text-gray-900">Additional Filters</h2>
+            {(filters.urgency || filters.category || filters.name || filters.location || filters.dateFrom || filters.dateTo) && (
+              <button
+                onClick={() => setFilters({
+                  dateFrom: '',
+                  dateTo: '',
+                  name: '',
+                  location: '',
+                  category: '',
+                  urgency: '',
+                  description: ''
+                })}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+              >
+                Clear All Filters
+              </button>
+            )}
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
