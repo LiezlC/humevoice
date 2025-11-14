@@ -92,23 +92,19 @@ export async function POST(request: NextRequest) {
     console.log(`📝 Processing transcript (${transcript.length} chars, language: ${grievance.language})`);
 
     // Extract fields using Claude
-    const prompt = `You are analyzing a labor grievance transcript. Extract the following information and return it as valid JSON:
+    const prompt = `You are analyzing a labor grievance transcript. Extract the following information and return it as valid JSON.
 
-{
-  "submitter_name": "The worker's name if provided, otherwise null",
-  "submitter_contact": "Email or phone number if provided, otherwise null",
-  "incident_date": "When the issue started (e.g., 'Early March 2024', 'August 2024', '6 weeks ago'), otherwise null",
-  "incident_location": "Specific location/department (e.g., 'Processing Plant B, Palma district', 'Security sector'), otherwise null",
-  "people_involved": "Names of supervisors/managers mentioned (e.g., 'Supervisor Carlos', 'Roberto, Operations Manager'), otherwise null",
-  "category": "One of: wages, hours, safety, discrimination, contracts, discipline, union, conditions, training, other",
-  "description": "2-3 sentence summary in English of the main issue"
-}
+Return a JSON object with these exact fields:
+- submitter_name: The worker's name if provided, otherwise null
+- submitter_contact: Email or phone number if provided, otherwise null
+- incident_date: When the issue started (e.g., 'Early March 2024', 'August 2024', '6 weeks ago'), otherwise null
+- incident_location: Specific location/department (e.g., 'Processing Plant B, Palma district', 'Security sector'), otherwise null
+- people_involved: Names of supervisors/managers mentioned (e.g., 'Supervisor Carlos', 'Roberto, Operations Manager'), otherwise null
+- category: One of: wages, hours, safety, discrimination, contracts, discipline, union, conditions, training, other
+- description: 2-3 sentence summary in English of the main issue
+- urgency: One of: high, medium, low (based on severity and immediacy)
 
-IMPORTANT:
-- Return ONLY valid JSON, no other text
-- Use null for missing information, not empty strings
-- Description should be concise and factual
-- Category must be one of the specified options
+CRITICAL: Return ONLY the JSON object, no explanation, no other text whatsoever. Start your response with { and end with }.
 
 Transcript (Language: ${grievance.language}):
 ${transcript}`;
@@ -116,10 +112,16 @@ ${transcript}`;
     const message = await anthropic.messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 1024,
-      messages: [{
-        role: 'user',
-        content: prompt
-      }]
+      messages: [
+        {
+          role: 'user',
+          content: prompt
+        },
+        {
+          role: 'assistant',
+          content: '{'
+        }
+      ]
     });
 
     // Extract JSON from response
@@ -129,12 +131,20 @@ ${transcript}`;
     }
     const responseText = firstContent.text;
 
-    // Try to parse JSON (handle potential markdown code blocks)
-    let jsonText = responseText.trim();
-    if (jsonText.startsWith('```json')) {
+    // Since we prefilled with '{', we need to add it back
+    let jsonText = '{' + responseText.trim();
+
+    // Try to parse JSON (handle potential markdown code blocks or extra text)
+    if (jsonText.includes('```json')) {
       jsonText = jsonText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-    } else if (jsonText.startsWith('```')) {
+    } else if (jsonText.includes('```')) {
       jsonText = jsonText.replace(/```\n?/g, '').trim();
+    }
+
+    // Extract JSON object if there's surrounding text
+    const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      jsonText = jsonMatch[0];
     }
 
     const extracted = JSON.parse(jsonText);
@@ -151,6 +161,7 @@ ${transcript}`;
         incident_location: extracted.incident_location,
         people_involved: extracted.people_involved,
         category: extracted.category,
+        urgency: extracted.urgency,
         description: extracted.description,
         updated_at: new Date().toISOString()
       })
