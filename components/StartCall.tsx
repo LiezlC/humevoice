@@ -3,8 +3,9 @@
 import { useVoice } from "@humeai/voice-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "./ui/button";
-import { Phone, Globe, Check } from "lucide-react";
+import { Phone, Globe, Check, BarChart3 } from "lucide-react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import type { Language as SupabaseLanguage } from "@/utils/supabase";
 
 // Local type for available languages in this component
@@ -90,6 +91,14 @@ export default function StartCall({
           <div className="max-w-md w-full space-y-6">
             {showLanguageSelector ? (
               <>
+                <div className="absolute top-4 right-4">
+                  <Link href="/dashboard">
+                    <Button variant="outline" size="sm">
+                      <BarChart3 className="size-4 mr-2" />
+                      Dashboard
+                    </Button>
+                  </Link>
+                </div>
                 <div className="text-center space-y-2">
                   <Globe className="size-12 mx-auto text-primary" />
                   <h2 className="text-2xl font-bold">{currentTranslations.title}</h2>

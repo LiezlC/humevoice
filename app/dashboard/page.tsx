@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { RefreshCw, Calendar, MapPin, User, AlertCircle } from 'lucide-react';
+import { RefreshCw, Calendar, MapPin, User, AlertCircle, ArrowLeft, Phone } from 'lucide-react';
+import Link from 'next/link';
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -63,24 +64,7 @@ export default function Dashboard() {
     fetchGrievances();
   }, []);
 
-  // Calculate stats
-  const stats = {
-    total: grievances.length,
-    high: grievances.filter(g => g.urgency === 'high').length,
-    medium: grievances.filter(g => g.urgency === 'medium').length,
-    low: grievances.filter(g => g.urgency === 'low').length,
-  };
-
-  // Count by category
-  const categoryCount = grievances.reduce((acc, g) => {
-    const cat = g.category || 'other';
-    acc[cat] = (acc[cat] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-
-  const maxCount = Math.max(...Object.values(categoryCount), 1);
-
-  // Apply filters
+  // Apply filters FIRST
   const filteredGrievances = grievances.filter(g => {
     if (filters.dateFrom && new Date(g.created_at) < new Date(filters.dateFrom)) return false;
     if (filters.dateTo && new Date(g.created_at) > new Date(filters.dateTo)) return false;
@@ -91,6 +75,39 @@ export default function Dashboard() {
     if (filters.description && !g.description?.toLowerCase().includes(filters.description.toLowerCase())) return false;
     return true;
   });
+
+  // Calculate stats FROM FILTERED DATA
+  const stats = {
+    total: filteredGrievances.length,
+    high: filteredGrievances.filter(g => g.urgency === 'high').length,
+    medium: filteredGrievances.filter(g => g.urgency === 'medium').length,
+    low: filteredGrievances.filter(g => g.urgency === 'low').length,
+  };
+
+  // Count by category FROM FILTERED DATA
+  const categoryCount = filteredGrievances.reduce((acc, g) => {
+    const cat = g.category || 'other';
+    acc[cat] = (acc[cat] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const maxCount = Math.max(...Object.values(categoryCount), 1);
+
+  // Toggle urgency filter
+  const toggleUrgencyFilter = (urgency: string) => {
+    setFilters(prev => ({
+      ...prev,
+      urgency: prev.urgency === urgency ? '' : urgency
+    }));
+  };
+
+  // Toggle category filter
+  const toggleCategoryFilter = (category: string) => {
+    setFilters(prev => ({
+      ...prev,
+      category: prev.category === category ? '' : category
+    }));
+  };
 
   // Format date
   const formatDate = (dateString: string) => {
@@ -117,62 +134,95 @@ export default function Dashboard() {
             <h1 className="text-3xl font-bold text-gray-900">Grievance Dashboard</h1>
             <p className="text-gray-600 mt-1">Mozambique Labour Voice - Analytics</p>
           </div>
-          <button
-            onClick={fetchGrievances}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            disabled={loading}
-          >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
-          </button>
+          <div className="flex gap-3">
+            <Link
+              href="/"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition"
+            >
+              <Phone className="w-4 h-4" />
+              Report Grievance
+            </Link>
+            <button
+              onClick={fetchGrievances}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              disabled={loading}
+            >
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </button>
+          </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats Cards - NOW CLICKABLE FILTERS */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
             <div className="text-3xl font-bold text-gray-900">{stats.total}</div>
             <div className="text-gray-600 mt-1">Total Grievances</div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6 border-l-4 border-red-500">
+          <button
+            onClick={() => toggleUrgencyFilter('high')}
+            className={`bg-white rounded-lg shadow p-6 border-l-4 border-red-500 text-left hover:bg-red-50 transition ${
+              filters.urgency === 'high' ? 'ring-2 ring-red-500' : ''
+            }`}
+          >
             <div className="text-3xl font-bold text-red-600">{stats.high}</div>
-            <div className="text-gray-600 mt-1">High Urgency</div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500">
+            <div className="text-gray-600 mt-1">High Urgency {filters.urgency === 'high' && '✓'}</div>
+          </button>
+          <button
+            onClick={() => toggleUrgencyFilter('medium')}
+            className={`bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500 text-left hover:bg-yellow-50 transition ${
+              filters.urgency === 'medium' ? 'ring-2 ring-yellow-500' : ''
+            }`}
+          >
             <div className="text-3xl font-bold text-yellow-600">{stats.medium}</div>
-            <div className="text-gray-600 mt-1">Medium Urgency</div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+            <div className="text-gray-600 mt-1">Medium Urgency {filters.urgency === 'medium' && '✓'}</div>
+          </button>
+          <button
+            onClick={() => toggleUrgencyFilter('low')}
+            className={`bg-white rounded-lg shadow p-6 border-l-4 border-green-500 text-left hover:bg-green-50 transition ${
+              filters.urgency === 'low' ? 'ring-2 ring-green-500' : ''
+            }`}
+          >
             <div className="text-3xl font-bold text-green-600">{stats.low}</div>
-            <div className="text-gray-600 mt-1">Low Urgency</div>
-          </div>
+            <div className="text-gray-600 mt-1">Low Urgency {filters.urgency === 'low' && '✓'}</div>
+          </button>
         </div>
 
-        {/* Category Chart */}
+        {/* Category Chart - NOW CLICKABLE FILTERS */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Grievances by Category</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Grievances by Category (click to filter)</h2>
           <div className="space-y-3">
             {Object.entries(categoryCount).map(([category, count]) => (
-              <div key={category} className="flex items-center gap-3">
-                <div className="w-32 text-sm font-medium text-gray-700 capitalize">
+              <button
+                key={category}
+                onClick={() => toggleCategoryFilter(category)}
+                className={`w-full flex items-center gap-3 hover:bg-purple-50 rounded p-2 -m-2 transition ${
+                  filters.category === category ? 'bg-purple-100' : ''
+                }`}
+              >
+                <div className="w-32 text-sm font-medium text-gray-700 capitalize text-left">
                   {category.replace('_', ' ')}
+                  {filters.category === category && ' ✓'}
                 </div>
                 <div className="flex-1 bg-gray-200 rounded-full h-6 relative">
                   <div
-                    className="bg-purple-600 h-6 rounded-full flex items-center justify-end px-2"
+                    className={`h-6 rounded-full flex items-center justify-end px-2 ${
+                      filters.category === category ? 'bg-purple-700' : 'bg-purple-600'
+                    }`}
                     style={{ width: `${(count / maxCount) * 100}%` }}
                   >
                     <span className="text-xs font-semibold text-white">{count}</span>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
 
-        {/* Filters */}
+        {/* Additional Filters */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Filters</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Additional Filters</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
               <input
@@ -211,52 +261,6 @@ export default function Dashboard() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-              <select
-                value={filters.category}
-                onChange={(e) => setFilters({...filters, category: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">All Categories</option>
-                <option value="wages">Wages</option>
-                <option value="overtime">Overtime</option>
-                <option value="safety">Safety</option>
-                <option value="discrimination">Discrimination</option>
-                <option value="harassment">Harassment</option>
-                <option value="working_conditions">Working Conditions</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Urgency</label>
-              <select
-                value={filters.urgency}
-                onChange={(e) => setFilters({...filters, urgency: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">All Urgencies</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
-            </div>
-          </div>
-          <div className="mt-4">
-            <button
-              onClick={() => setFilters({
-                dateFrom: '',
-                dateTo: '',
-                name: '',
-                location: '',
-                category: '',
-                urgency: '',
-                description: ''
-              })}
-              className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
-            >
-              Clear All Filters
-            </button>
           </div>
         </div>
 
