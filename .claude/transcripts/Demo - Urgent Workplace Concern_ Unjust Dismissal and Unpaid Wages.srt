@@ -1,0 +1,467 @@
+1
+00:00:00,011 --> 00:00:05,011
+Hello,
+
+2
+00:00:06,650 --> 00:00:09,350
+I'm here to help you report a workplace concern.
+
+3
+00:00:09,669 --> 00:00:13,520
+Please note that this call is being recorded for documentation purposes.
+
+4
+00:00:14,180 --> 00:00:16,901
+All information shared will remain confidential,
+
+5
+00:00:17,124 --> 00:00:20,560
+and you can choose to remain completely anonymous if you prefer.
+
+6
+00:00:21,177 --> 00:00:23,280
+Sharing your name is entirely optional.
+
+7
+00:00:23,950 --> 00:00:30,041
+Can you tell me what happened? Hello,
+
+8
+00:00:26,612 --> 00:00:30,106
+I need to report a problem at work. Last week my manager called me
+
+9
+00:00:30,107 --> 00:00:33,525
+into his office, Told me to pack my things and leave immediately.
+
+10
+00:00:33,705 --> 00:00:38,687
+No warning. No explanation. I have a family of was my only income.
+
+11
+00:00:39,018 --> 00:00:43,866
+I don't know what I did wrong. I understand this must be very concerning
+
+12
+00:00:43,867 --> 00:00:46,175
+for you, especially with a family to support.
+
+13
+00:00:46,346 --> 00:00:48,639
+Can you tell me more about what happened in that meeting?
+
+14
+00:00:48,832 --> 00:00:52,265
+Did your manager say anything at all about why you were being let go?
+
+15
+00:00:52,480 --> 00:00:56,582
+Or was there any paperwork involved? Thank you for understanding.
+
+16
+00:00:56,924 --> 00:00:59,985
+In that meeting he just said, take your bag and hand in your card.
+
+17
+00:00:59,986 --> 00:01:04,582
+You're done today. No reason. I asked why and he said decision from above.
+
+18
+00:01:04,700 --> 00:01:07,323
+There was no letter, no warning, nothing to sign.
+
+19
+00:01:07,602 --> 00:01:10,139
+Security walked me out after I turned in my badge.
+
+20
+00:01:11,740 --> 00:01:16,694
+That sounds incredibly stressful. Being given no explanation,
+
+21
+00:01:16,695 --> 00:01:19,100
+especially without any paperwork or warning,
+
+22
+00:01:19,101 --> 00:01:23,036
+is concerning. How long had you been working there and had you received any
+
+23
+00:01:23,037 --> 00:01:26,073
+complaints or disciplinary actions before this happened?
+
+24
+00:01:27,073 --> 00:01:31,166
+I've been there just over three years. Started as a general worker and moved
+
+25
+00:01:31,167 --> 00:01:33,894
+to the crushing plant crew. I've never had a warning,
+
+26
+00:01:33,953 --> 00:01:38,238
+no written or verbal. My supervisor even praised me last month for covering extra
+
+27
+00:01:38,239 --> 00:01:43,209
+night shifts. Three years is a significant amount of time to be employed somewhere.
+
+28
+00:01:44,461 --> 00:01:47,862
+It makes this even more troubling that you had no warnings and were recently
+
+29
+00:01:47,863 --> 00:01:52,384
+praised for your work. Can you tell me the specific date this happened and
+
+30
+00:01:52,385 --> 00:01:56,355
+which company or facility this was at? It happened last week,
+
+31
+00:01:56,771 --> 00:01:59,491
+on November 7th, 2025.
+
+32
+00:01:59,492 --> 00:02:03,107
+I work at the Mavita Minerals crushing plant near Moatai's Ted Province.
+
+33
+00:02:03,501 --> 00:02:06,541
+The contractor on my contract is Zanbazi Site Services.
+
+34
+00:02:07,541 --> 00:02:11,173
+Thank you for providing those details. I've noted the exact date,
+
+35
+00:02:11,174 --> 00:02:14,111
+location, and contractor information from your report.
+
+36
+00:02:14,261 --> 00:02:17,930
+Can you tell me who else was present during this meeting besides your manager,
+
+37
+00:02:18,143 --> 00:02:21,519
+and do you know if any of your coworkers witnessed what happened or have
+
+38
+00:02:21,520 --> 00:02:28,306
+experienced similar treatment? It
+
+39
+00:02:28,307 --> 00:02:30,808
+was just me and my manager, Sr. Alberto.
+
+40
+00:02:31,303 --> 00:02:34,616
+After he called security, two guards came to the door and walked me out.
+
+41
+00:02:35,239 --> 00:02:38,520
+On the floor, a couple of guys from my shift saw me being escorted,
+
+42
+00:02:38,770 --> 00:02:41,794
+Joaquim and Mateus, but they didn't hear the conversation.
+
+43
+00:02:41,980 --> 00:02:44,479
+About similar treatment, two weeks before,
+
+44
+00:02:44,480 --> 00:02:46,511
+a welder from maintenance, Orlando,
+
+45
+00:02:46,512 --> 00:02:50,530
+was also told to go home suddenly. He said they blamed instructions from Maputo,
+
+46
+00:02:50,642 --> 00:02:53,933
+but he also got no letter. I can share their numbers if needed.
+
+47
+00:02:54,933 --> 00:02:59,025
+Thank you for sharing that information about Joachim and Matthias witnessing the event.
+
+48
+00:02:59,595 --> 00:03:03,843
+It's significant that Orlando had a similar experience recently.
+
+49
+00:03:03,844 --> 00:03:06,082
+This helps us understand if there's a pattern.
+
+50
+00:03:07,097 --> 00:03:09,410
+Before we discuss contact information,
+
+51
+00:03:09,625 --> 00:03:13,411
+I want to remind you that sharing your own name and contact details is
+
+52
+00:03:13,412 --> 00:03:17,495
+entirely optional. You can remain completely anonymous if you prefer.
+
+53
+00:03:17,636 --> 00:03:20,866
+Would you be comfortable sharing how we might contact you for follow-up,
+
+54
+00:03:21,060 --> 00:03:23,383
+or would you prefer to keep this report anonymous?
+
+55
+00:03:24,383 --> 00:03:26,408
+I can share my details, that's okay.
+
+56
+00:03:26,677 --> 00:03:31,669
+My name is Ernesto Niacole. Phone is 843-729-152.
+
+57
+00:03:31,957 --> 00:03:34,227
+I'm staying in Matundo near Tete Town.
+
+58
+00:03:34,538 --> 00:03:37,151
+If you need co-workers' contacts too, I can provide them.
+
+59
+00:03:38,151 --> 00:03:40,919
+Thank you for sharing your name and contact information,
+
+60
+00:03:40,920 --> 00:03:44,775
+Ernesto. Can you spell your name for me letter by letter so I can
+
+61
+00:03:44,776 --> 00:03:48,073
+make sure I have it recorded correctly? Sure.
+
+62
+00:03:48,490 --> 00:03:50,995
+E-R-N-E-S-T-O.
+
+63
+00:03:51,434 --> 00:03:54,206
+Space. N-H-A-C-A-A-E.
+
+64
+00:03:55,206 --> 00:03:57,221
+Thank you for spelling that out, Ernesto.
+
+65
+00:03:57,521 --> 00:04:01,157
+I've noted your name and contact information down below in our system.
+
+66
+00:04:01,478 --> 00:04:04,805
+Before we finish, I want to make sure I have everything clear.
+
+67
+00:04:05,137 --> 00:04:07,173
+You mentioned you worked at the crushing plant.
+
+68
+00:04:07,388 --> 00:04:09,744
+What type of work were you doing there specifically?
+
+69
+00:04:10,001 --> 00:04:13,954
+And were you paid hourly or hourly? Thank you.
+
+70
+00:04:13,955 --> 00:04:20,395
+I was on a crushing plant
+
+71
+00:04:20,396 --> 00:04:23,367
+operations crew, monitoring the feeders and conveyors,
+
+72
+00:04:23,503 --> 00:04:26,812
+clearing blockages, doing basic greasing and housekeeping,
+
+73
+00:04:26,852 --> 00:04:31,243
+and assisting during shutdowns. I'm on a monthly salary with overtime when we do
+
+74
+00:04:31,244 --> 00:04:36,411
+night shifts. Thank you for clarifying the details about your role and compensation
+
+75
+00:04:36,412 --> 00:04:39,644
+structure. Based on everything you've shared,
+
+76
+00:04:39,929 --> 00:04:43,696
+this appears to be an urgent matter since you've already lost your income with
+
+77
+00:04:43,697 --> 00:04:48,672
+no clear justification. Is there anything else important about this situation
+
+78
+00:04:48,673 --> 00:04:50,981
+that you'd like to add to the report? Yes. My access card and last
+
+79
+00:04:50,982 --> 00:04:52,880
+week's overtime weren't paid, and HR hasn't given me a termination letter
+
+80
+00:05:12,720 --> 00:05:16,581
+or reason despite my calls. I'm asking to be reinstated,
+
+81
+00:05:16,582 --> 00:05:19,739
+or if they're letting me go, to get proper notice pay,
+
+82
+00:05:19,740 --> 00:05:22,629
+accrued leave, and a fair retrenchment package.
+
+83
+00:05:22,747 --> 00:05:26,320
+I can send screenshots of my call logs and pay slips if needed.
+
+84
+00:05:27,320 --> 00:05:34,318
+Thank you for providing those additional details. I
+
+85
+00:05:34,319 --> 00:05:36,449
+understand how frustrating this must be,
+
+86
+00:05:36,579 --> 00:05:40,172
+especially with unpaid overtime and no proper documentation.
+
+87
+00:05:41,731 --> 00:05:44,417
+This is important information that strengthens your case.
+
+88
+00:05:44,878 --> 00:05:49,229
+I have all the details recorded, your sudden dismissal on November 7th with no
+
+89
+00:05:49,230 --> 00:05:52,150
+explanation or paperwork, the unpaid overtime,
+
+90
+00:05:52,302 --> 00:05:56,054
+and your request for reinstatement or proper termination compensation.
+
+91
+00:05:56,206 --> 00:06:00,289
+This report will be reviewed by the appropriate personnel and kept confidential.
+
+92
+00:06:00,857 --> 00:06:02,856
+Is there anything else you'd like to add?
+
+93
+00:06:09,234 --> 00:06:11,733
+Thank you for taking this seriously.
+
+94
+00:06:12,058 --> 00:06:15,319
+Just please note I have two kids and my wife isn't working,
+
+95
+00:06:15,320 --> 00:06:17,930
+so I'm really under pressure for rent and food this month.
+
+96
+00:06:18,565 --> 00:06:21,207
+If there's any way to speed up the follow-up or help me get a
+
+97
+00:06:21,208 --> 00:06:24,759
+letter from HR, I'd appreciate it. And I can share Joaquim,
+
+98
+00:06:24,760 --> 00:06:26,815
+Mateus, and Orlando's numbers if needed.
+
+99
+00:06:27,815 --> 00:06:30,796
+I understand the pressure you're under with your family situation.
+
+100
+00:06:32,498 --> 00:06:35,244
+That financial strain makes this even more urgent,
+
+101
+00:06:35,474 --> 00:06:39,578
+And I've noted that in your report. The information about Yohannam,
+
+102
+00:06:39,579 --> 00:06:42,348
+Mateus, and Orlando as witnesses is helpful.
+
+103
+00:06:42,738 --> 00:06:45,111
+If you're comfortable sharing their contact details,
+
+104
+00:06:45,330 --> 00:06:48,352
+that would strengthen the case. But it's entirely up to you.
+
+105
+00:06:48,734 --> 00:06:52,019
+Would you like to provide those numbers now? Yes,
+
+106
+00:06:52,020 --> 00:06:57,693
+you can add them. Joaquim, 84596-3127.
+
+107
+00:06:57,694 --> 00:07:01,106
+Mateus, 84403891.
+
+108
+00:07:01,107 --> 00:07:05,631
+Orlando, 826754103. Thank you for moving this
+
+109
+00:07:05,632 --> 00:07:10,684
+along. Thank you for providing those additional witness contact information,
+
+110
+00:07:10,842 --> 00:07:12,966
+Joahim, Mateus, and Orlando.
+
+111
+00:07:13,157 --> 00:07:15,478
+I recorded all the details of your grievance,
+
+112
+00:07:15,479 --> 00:07:18,193
+including your sudden dismissal without explanation,
+
+113
+00:07:18,416 --> 00:07:22,060
+the unpaid overtime, and, lack of termination documentation,
+
+114
+00:07:22,357 --> 00:07:24,673
+and your family's urgent financial situation.
+
+115
+00:07:24,821 --> 00:07:29,398
+This confidential report will be reviewed by appropriate personnel who will work to address
+
+116
+00:07:29,399 --> 00:07:32,272
+your concerns. Thank you for trusting us with this information,
+
+117
+00:07:32,273 --> 00:07:36,272
+Ernesto, and I truly hope this gets resolved quickly for you and your family.
