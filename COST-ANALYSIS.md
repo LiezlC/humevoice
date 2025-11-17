@@ -173,6 +173,104 @@ This document provides a comprehensive cost analysis for operating the multiling
 
 ---
 
+### 9. HeyGen (AI Avatar Training Videos)
+
+**Use Case:** Create AI-powered training videos with realistic avatars to educate workers about workplace rights, safety procedures, and how to use the grievance system
+
+**Product Types:**
+
+#### A. Pre-recorded Avatar Videos (Best for Training Content)
+**Pricing:**
+- **Creator Plan (Non-API):** $24-29/month
+  - Includes video credits
+  - Best for small-scale training video creation
+  - Manual video creation through web interface
+
+- **API Pro Plan:** $99/month for 100 credits
+  - **$0.99 per minute** of generated video
+  - Programmatic video generation
+
+- **API Scale Plan:** $330/month for 660 credits
+  - **$0.50 per minute** of generated video
+  - Better for high-volume production
+
+**Per Training Video Example (5-minute safety training):**
+- Creator Plan: Included in monthly subscription ($24-29)
+- API Pro: $4.95 per video
+- API Scale: $2.50 per video
+
+#### B. Interactive Avatar Streaming (Conversational Agents)
+**Use Case:** Real-time interactive training sessions or Q&A avatars
+
+**Pricing:**
+- **API Pro Plan:** 100 credits = 500 minutes streaming
+  - **$0.198 per minute** ($99/month ÷ 500 minutes)
+
+- **API Scale Plan:** 660 credits = 3,300 minutes streaming
+  - **$0.10 per minute** ($330/month ÷ 3,300 minutes)
+
+**Note:** 1 credit = 5 minutes of interactive streaming
+
+#### C. Avatar IV (Premium Interactive)
+**Pricing:**
+- Creator Plan: 10 minutes included per month
+- 1 credit = 10 seconds of Avatar IV
+- **Very expensive:** ~$6 per minute (extrapolated)
+
+**Recommended Use:** Stick with standard interactive avatars or pre-recorded videos for training content
+
+---
+
+**HeyGen Key Features:**
+- **Multilingual support:** 40+ languages including Portuguese
+- **Custom avatars:** Clone real people or use stock avatars
+- **Text-to-speech:** Natural voices in multiple languages
+- **Translation:** Auto-translate videos to multiple languages
+- **Templates:** Pre-built templates for training, onboarding, safety
+- **Branding:** Add logos, colors, backgrounds
+
+---
+
+**Training Video Use Cases:**
+
+1. **Onboarding Videos** (3-5 min each)
+   - "How to Report a Workplace Grievance"
+   - "Your Rights as a Worker in Mozambique"
+   - "Understanding the Voice System"
+
+2. **Safety Training** (5-10 min each)
+   - "Working at Heights: Safety Procedures"
+   - "Reporting Safety Hazards"
+   - "Emergency Procedures"
+
+3. **Language-Specific Tutorials** (2-3 min each)
+   - Portuguese version of system walkthrough
+   - English version of system walkthrough
+
+4. **FAQ Videos** (1-2 min each)
+   - "What Happens After I Report?"
+   - "Will My Report Be Anonymous?"
+   - "How Long Does the Process Take?"
+
+---
+
+**Cost Example: Complete Training Library**
+
+**Scenario:** Create 12 training videos (avg 5 minutes each) in 2 languages
+
+| Approach | Calculation | Cost |
+|----------|-------------|------|
+| **Creator Plan (Manual)** | $29/month subscription | $29/month |
+| **API Pro (Programmatic)** | 12 videos × 5 min × 2 langs × $0.99 | $118.80 one-time |
+| **API Scale (High Volume)** | 12 videos × 5 min × 2 langs × $0.50 | $60 one-time |
+
+**Recommendation:**
+- **Small scale (<10 videos):** Creator Plan at $29/month
+- **Medium scale (10-50 videos):** API Pro Plan
+- **Large scale (50+ videos or frequent updates):** API Scale Plan
+
+---
+
 ## Cost Scenarios
 
 ### Scenario 1: Pilot/Testing Phase
@@ -276,6 +374,57 @@ This document provides a comprehensive cost analysis for operating the multiling
 
 ---
 
+### Scenario 6: Production + Training Videos
+**Volume:** 2,000 conversations/month
+**Languages:** 50% English, 50% Portuguese
+**Infrastructure:** Web + Phone (40% phone)
+**Training Content:** 12 training videos (5 min each, 2 languages)
+
+| Service | Calculation | Monthly Cost |
+|---------|-------------|--------------|
+| Hume EVI (EVI 2) | 2,000 × $0.54 | $1,080.00 |
+| Twilio (phone calls) | 800 × 7.5 min × $0.022 | $132.00 |
+| Claude Field Extraction | 2,000 × $0.0105 | $21.00 |
+| OpenAI Translation | 1,000 × $0.004 | $4.00 |
+| Supabase | Pro plan + overage | $30.00 |
+| Vercel | Pro plan + overage | $30.00 |
+| **HeyGen Training Videos** | Creator Plan | $29.00 |
+| **TOTAL** | | **$1,326.00/month** |
+
+**Per conversation cost:** $0.66
+
+**Training video cost:** $29/month for ongoing access + ability to update videos
+
+**One-time alternative (API Scale):** $60 one-time for all 24 videos (12 videos × 2 languages)
+
+---
+
+### Scenario 7: Enterprise + Interactive Training Agents
+**Volume:** 10,000 conversations/month
+**Infrastructure:** Full suite with interactive training
+**Training:** 50 pre-recorded videos + interactive Q&A avatar
+
+| Service | Calculation | Monthly Cost |
+|---------|-------------|--------------|
+| Hume EVI (EVI 3) | 10,000 × $0.15 | $1,500.00 |
+| Twilio (phone calls) | 6,000 × 7.5 min × $0.022 | $990.00 |
+| Claude (w/ caching) | 10,000 × $0.0015 | $15.00 |
+| OpenAI Translation | 5,000 × $0.004 | $20.00 |
+| Supabase | Team plan | $599.00 |
+| Vercel | Pro plan + overage | $50.00 |
+| **HeyGen API Scale** | Base subscription | $330.00 |
+| **Interactive Avatar Usage** | 500 min/month @ $0.10 | $50.00 |
+| **TOTAL** | | **$3,554.00/month** |
+
+**Per conversation cost:** $0.36
+
+**Training benefits:**
+- Unlimited video updates throughout the month
+- Interactive Q&A avatar for self-service training
+- Multilingual training content at no extra cost
+
+---
+
 ## Alternative Architecture Scenarios
 
 ### Option A: ElevenLabs + Whisper (Instead of Hume)
@@ -320,6 +469,96 @@ This document provides a comprehensive cost analysis for operating the multiling
 - Bandwidth: Included in most scenarios up to 1TB
 
 **Recommendation:** Pilot separately; may require dedicated video solution
+
+---
+
+### Option D: HeyGen Training Video Integration
+**Use Case:** Supplement voice grievance system with AI-generated training content
+
+**Benefits:**
+1. **Worker education:** Create onboarding videos about rights, procedures, safety
+2. **System tutorials:** Video walkthroughs of how to use the voice system
+3. **Multilingual:** Same video in Portuguese, English, or other languages
+4. **Consistent messaging:** Standardized training across all locations
+5. **Scalable:** Create once, distribute to thousands
+6. **Update easily:** Refresh content as policies change
+
+**Integration Approach:**
+
+#### Option D1: Basic Training Library
+- **Service:** HeyGen Creator Plan ($29/month)
+- **Content:** 10-15 training videos (3-5 min each)
+- **Languages:** English + Portuguese
+- **Delivery:** Embed videos on website, share via WhatsApp/SMS
+- **Monthly cost:** +$29
+- **Best for:** Small to medium deployments
+
+#### Option D2: Programmatic Video Generation
+- **Service:** HeyGen API Pro ($99/month)
+- **Content:** Auto-generate personalized training based on worker role/location
+- **Languages:** Dynamic translation
+- **Delivery:** Integrated into dashboard, email onboarding sequences
+- **Monthly cost:** +$99 base + usage
+- **Best for:** Large deployments with varied worker populations
+
+#### Option D3: Interactive Training Avatars
+- **Service:** HeyGen API Scale ($330/month)
+- **Content:** Real-time Q&A avatar for training support
+- **Use case:** Workers can ask questions about procedures and get instant video responses
+- **Example:** "What happens if I report anonymously?" → Avatar responds with personalized answer
+- **Monthly cost:** +$330 base + $0.10/minute streaming
+- **Best for:** Enterprise deployments with high training needs
+
+**Sample Implementation:**
+```
+Training Content Library (24 videos total):
+├─ Onboarding (6 videos × 2 languages)
+│  ├─ Welcome & System Overview (3 min)
+│  ├─ Your Rights (5 min)
+│  ├─ How to Report (4 min)
+│  ├─ Confidentiality & Safety (3 min)
+│  ├─ What Happens Next (2 min)
+│  └─ Getting Help (2 min)
+│
+├─ Safety Training (4 videos × 2 languages)
+│  ├─ Working at Heights (7 min)
+│  ├─ Equipment Safety (5 min)
+│  ├─ Emergency Procedures (6 min)
+│  └─ Hazard Reporting (4 min)
+│
+└─ FAQ (2 videos × 2 languages)
+   ├─ Common Questions (5 min)
+   └─ Troubleshooting (3 min)
+
+Total: 12 unique videos × 2 languages = 24 videos
+Average length: 4 minutes
+Total content: 96 minutes of training material
+
+Cost Options:
+- Creator Plan: $29/month (unlimited access)
+- API Pro: $95.04 one-time (96 min × $0.99)
+- API Scale: $48 one-time (96 min × $0.50)
+```
+
+**ROI for Training Videos:**
+
+Traditional training costs:
+- In-person training: $50-100 per worker (trainer time, materials, venue)
+- Translated materials: $0.10-0.25 per word
+- Video production: $1,000-5,000 per professional video
+
+HeyGen training costs:
+- **One-time:** $48-95 for complete library (API approach)
+- **Ongoing:** $29/month for unlimited updates (Creator approach)
+- **Per worker:** $0 (unlimited views)
+
+**Breakeven:** After training just 1-2 workers, HeyGen pays for itself vs traditional methods
+
+**Recommendation:**
+Add HeyGen training videos as an **optional add-on** for clients who want comprehensive worker education alongside the grievance system. Position it as:
+- "+$29/month: Professional Training Video Library"
+- "+$99/month: Advanced Training with Custom Video Generation"
+- "+$330/month: Interactive Training with AI Avatar Support"
 
 ---
 

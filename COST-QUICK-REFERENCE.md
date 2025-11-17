@@ -23,6 +23,8 @@
 | **Twilio Phone** | $0.165 | Toll-free inbound (US rates) |
 | **Whisper STT** | $0.045 | Alternative to Hume (STT only) |
 | **ElevenLabs TTS** | $0.75 | Alternative to Hume (TTS only) |
+| **HeyGen Training Video** | $0.50-0.99/min | Pre-recorded avatar videos |
+| **HeyGen Interactive Avatar** | $0.10-0.198/min | Real-time streaming Q&A |
 
 ## Monthly Service Subscriptions
 
@@ -34,6 +36,7 @@
 | **OpenAI** | $0 | Pay-as-you-go | Custom pricing |
 | **Hume** | Free credits (limited) | Pay-as-you-go | Volume discounts |
 | **Twilio** | $0 | Pay-as-you-go + phone rental | Custom pricing |
+| **HeyGen** | $0 (3 videos/month) | $24-29 (Creator) or $99-330 (API) | Custom pricing |
 
 ## Cost Breakdown by Component
 
@@ -138,6 +141,50 @@ TOTAL: ~$650/month
 - **Data quality:** Structured extraction vs manual notes
 - **Response time:** Real-time alerts for critical issues
 - **Compliance:** Automatic audit trail and documentation
+
+## Optional Add-On: HeyGen Training Videos
+
+### Use Case
+Create AI avatar training videos to educate workers about:
+- Workplace rights and procedures
+- How to use the grievance system
+- Safety protocols and emergency procedures
+- Multilingual onboarding content
+
+### Pricing Options
+
+| Plan | Monthly Cost | Best For | Cost per Video Minute |
+|------|--------------|----------|----------------------|
+| **Creator Plan** | $24-29 | Small libraries (<15 videos) | Unlimited (subscription) |
+| **API Pro** | $99 | Medium volume (10-50 videos) | $0.99/minute |
+| **API Scale** | $330 | High volume (50+ videos) | $0.50/minute |
+
+### Sample Training Library Cost
+**12 training videos (5 min each) in 2 languages = 120 minutes total**
+
+- **Creator Plan:** $29/month (ongoing subscription)
+- **API Pro:** $118.80 one-time
+- **API Scale:** $60 one-time
+
+### Interactive Training Avatar
+**For real-time Q&A support:**
+- API Pro: $0.198/minute streaming
+- API Scale: $0.10/minute streaming
+- Use case: Workers ask questions, avatar provides video answers
+
+### ROI vs Traditional Training
+- **Traditional:** $50-100 per worker for in-person training
+- **HeyGen:** $29-60 one-time for unlimited worker access
+- **Breakeven:** After training just 1-2 workers
+
+### Quick Add-On Pricing for Quotes
+
+**Add to any scenario:**
+- **Basic Training:** +$29/month (Creator Plan)
+- **Advanced Training:** +$99/month (API Pro with custom generation)
+- **Interactive Support:** +$330/month (API Scale with real-time avatar Q&A)
+
+---
 
 ## Contact for Custom Analysis
 
