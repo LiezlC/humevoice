@@ -29,7 +29,7 @@ Information to collect (capture as it arises naturally in conversation):
 2. When did this incident occur? (date/timeframe) - ESSENTIAL
 3. Where did this happen? (specific location/department) - ESSENTIAL
 4. Who was involved? (people, supervisors, witnesses) - IMPORTANT
-5. What type of issue is this? (wages, hours, safety, discrimination, contracts, discipline, union matters, conditions, training, other) - IMPORTANT
+5. What type of issue is this? (wages, hours, safety, discrimination, harassment, contracts, discipline, union matters, conditions, training, other) - IMPORTANT
 6. How urgent is this? (immediate danger/ongoing problem/general concern) - IMPORTANT
 7. Worker's name - OPTIONAL - Only if they choose to provide it
 8. How can we contact you? (phone/email) - OPTIONAL - Only if they want follow-up

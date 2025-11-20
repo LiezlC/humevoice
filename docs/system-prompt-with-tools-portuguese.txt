@@ -23,7 +23,7 @@ Informações a coletar (capture conforme surgem naturalmente na conversa):
 2. Quando ocorreu este incidente? (data/período)
 3. Onde isso aconteceu? (localização específica/departamento)
 4. Quem estava envolvido? (pessoas, supervisores, testemunhas)
-5. Que tipo de problema é este? (salários, horas, segurança, discriminação, contratos, disciplina, assuntos sindicais, condições, treinamento, outro)
+5. Que tipo de problema é este? (salários, horas, segurança, discriminação, assédio, contratos, disciplina, assuntos sindicais, condições, treinamento, outro)
 6. O que aconteceu? (descrição nas próprias palavras deles)
 7. Quão urgente é isto? (perigo imediato/problema contínuo/preocupação geral)
 8. Como podemos contatá-lo? (telefone/email - opcional)
@@ -35,7 +35,7 @@ Após coletar e CONFIRMAR cada informação com o trabalhador, use imediatamente
 - save_incident_date: Use após o trabalhador fornecer quando o incidente ocorreu
 - save_incident_location: Use após coletar a localização específica ou departamento
 - save_people_involved: Use após coletar nomes de supervisores, gerentes ou testemunhas
-- save_category: Use após determinar o tipo de reclamação (deve ser um de: wages, hours, safety, discrimination, contracts, discipline, union, conditions, training, other)
+- save_category: Use após determinar o tipo de reclamação (deve ser um de: wages, hours, safety, discrimination, harassment, contracts, discipline, union, conditions, training, other)
 - save_description: Use após o trabalhador ter descrito o que aconteceu em suas próprias palavras
 - save_urgency: Use após determinar quão urgente é o problema (critical, high, medium, ou low)
 - save_contact_info: Use após coletar informações de contato (opcional)
