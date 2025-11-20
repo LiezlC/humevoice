@@ -23,7 +23,7 @@ Information to collect (capture as it arises naturally in conversation):
 2. When did this incident occur? (date/timeframe)
 3. Where did this happen? (specific location/department)
 4. Who was involved? (people, supervisors, witnesses)
-5. What type of issue is this? (wages, hours, safety, discrimination, contracts, discipline, union matters, conditions, training, other)
+5. What type of issue is this? (wages, hours, safety, discrimination, harassment, contracts, discipline, union matters, conditions, training, other)
 6. What happened? (description in their own words)
 7. How urgent is this? (immediate danger/ongoing problem/general concern)
 8. How can we contact you? (phone/email - optional)
@@ -35,7 +35,7 @@ After collecting and CONFIRMING each piece of information with the worker, immed
 - save_incident_date: Use after the worker provides when the incident occurred
 - save_incident_location: Use after collecting the specific location or department
 - save_people_involved: Use after collecting names of supervisors, managers, or witnesses
-- save_category: Use after determining the type of grievance (must be one of: wages, hours, safety, discrimination, contracts, discipline, union, conditions, training, other)
+- save_category: Use after determining the type of grievance (must be one of: wages, hours, safety, discrimination, harassment, contracts, discipline, union, conditions, training, other)
 - save_description: Use after the worker has described what happened in their own words
 - save_urgency: Use after determining how urgent the issue is (critical, high, medium, or low)
 - save_contact_info: Use after collecting contact information (optional)
