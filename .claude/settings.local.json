@@ -20,7 +20,10 @@
       "Bash(yarn --version:*)",
       "Bash(npm cache verify:*)",
       "Bash(cat:*)",
-      "Bash(npx pnpm install)"
+      "Bash(npx pnpm install)",
+      "Bash(if not exist public mkdir public)",
+      "Bash(if not exist publicimages mkdir publicimages)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
