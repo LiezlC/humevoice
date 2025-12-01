@@ -26,20 +26,20 @@ interface UITranslations {
 
 const uiTranslations: UITranslations = {
   en: {
-    title: "Mozambique Labour Voice",
+    title: "GrieVoice Demo",
     subtitle: "Industrial Relations AI Agent",
     heading: "Submit Your Grievance Confidently",
-    description: "Welcome to our service portal. Mozambique Labour Union, industrial relations information and grievances with AI-powered voice assistance.",
+    description: "Welcome to our service portal. Industrial relations information and grievances with AI-powered voice assistance.",
     startButton: "Start Conversation",
     connecting: "Connecting...",
     trustBadge: "Trust & Safety",
     privacyBadge: "Certified Private"
   },
   pt: {
-    title: "Voz do Trabalho Moçambique",
+    title: "GrieVoice Demo",
     subtitle: "Agente de IA de Relações Industriais",
     heading: "Envie a Sua Queixa com Confiança",
-    description: "Bem-vindo ao nosso portal de serviços. Sindicato do Trabalho de Moçambique, informações sobre relações industriais e queixas com assistência de voz alimentada por IA.",
+    description: "Bem-vindo ao nosso portal de serviços. Informações sobre relações industriais e queixas com assistência de voz alimentada por IA.",
     startButton: "Iniciar Conversa",
     connecting: "Conectando...",
     trustBadge: "Confiança e Segurança",
