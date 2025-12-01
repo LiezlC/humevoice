@@ -97,7 +97,7 @@ export default function StartCall({
         <motion.div
           className="fixed inset-0 flex items-center justify-center"
           style={{
-            background: 'linear-gradient(135deg, #f97316 0%, #fb923c 25%, #60a5fa 75%, #3b82f6 100%)'
+            background: 'linear-gradient(135deg, #78350f 0%, #0d9488 50%, #fef3c7 100%)'
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -150,8 +150,8 @@ export default function StartCall({
                 <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-6">
                   {/* Illustration placeholder - you can add an actual illustration here */}
                   <div className="flex justify-center mb-4">
-                    <div className="w-32 h-32 bg-gradient-to-br from-orange-100 to-blue-100 rounded-full flex items-center justify-center">
-                      <Phone className="size-16 text-orange-500" />
+                    <div className="w-32 h-32 bg-gradient-to-br from-amber-50 to-teal-100 rounded-full flex items-center justify-center">
+                      <Phone className="size-16 text-teal-600" />
                     </div>
                   </div>
 
@@ -172,8 +172,8 @@ export default function StartCall({
                         variant={selectedLanguage === lang.code ? "default" : "outline"}
                         className={`flex-1 h-auto py-4 flex flex-col items-center gap-2 relative transition-all ${
                           selectedLanguage === lang.code
-                            ? 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600'
-                            : 'border-2 border-gray-200 hover:border-blue-300 bg-white'
+                            ? 'bg-teal-600 hover:bg-teal-700 text-white border-teal-600'
+                            : 'border-2 border-gray-200 hover:border-teal-300 bg-white'
                         }`}
                         onClick={() => {
                           console.log('Language selected:', lang.code);
@@ -192,7 +192,7 @@ export default function StartCall({
                   {/* Start Button */}
                   <Button
                     size="lg"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6 rounded-xl text-lg font-semibold shadow-lg"
+                    className="w-full bg-teal-600 hover:bg-teal-700 text-white py-6 rounded-xl text-lg font-semibold shadow-lg"
                     onClick={handleStartCall}
                   >
                     <Phone className="size-5 mr-2" />
@@ -227,7 +227,7 @@ export default function StartCall({
               <div className="bg-white rounded-2xl shadow-2xl p-12">
                 <div className="text-center">
                   <div className="animate-pulse">
-                    <Phone className="size-16 mx-auto text-orange-500 mb-6" />
+                    <Phone className="size-16 mx-auto text-teal-600 mb-6" />
                     <p className="text-xl font-semibold text-gray-900">
                       {currentTranslations.connecting}
                     </p>

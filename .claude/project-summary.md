@@ -82,7 +82,7 @@ CREATE TABLE public.labor_grievances (
   incident_date DATE,
   incident_location TEXT,
   people_involved TEXT,
-  category TEXT, -- 'wages', 'hours', 'safety', 'discrimination', 'contracts', 'discipline', 'union', 'conditions', 'training', 'other'
+  category TEXT, -- 'wages', 'hours', 'safety', 'discrimination', 'harassment', 'contracts', 'discipline', 'union', 'conditions', 'training', 'other'
   description TEXT NOT NULL,
   urgency TEXT, -- 'low', 'medium', 'high', 'critical'
   status TEXT DEFAULT 'new', -- 'new', 'in_progress', 'resolved', 'closed'

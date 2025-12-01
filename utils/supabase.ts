@@ -5,7 +5,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export type Category = 'wages' | 'hours' | 'safety' | 'discrimination' | 'contracts' | 'discipline' | 'union' | 'conditions' | 'training' | 'other';
+export type Category = 'wages' | 'hours' | 'safety' | 'discrimination' | 'harassment' | 'contracts' | 'discipline' | 'union' | 'conditions' | 'training' | 'other';
 export type Urgency = 'low' | 'medium' | 'high' | 'critical';
 export type Status = 'new' | 'in_progress' | 'resolved' | 'closed';
 export type Language = 'en' | 'af' | 'pt' | 'sw';
