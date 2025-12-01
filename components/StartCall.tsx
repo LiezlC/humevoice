@@ -97,7 +97,7 @@ export default function StartCall({
         <motion.div
           className="fixed inset-0 flex items-center justify-center"
           style={{
-            background: 'linear-gradient(135deg, #78350f 0%, #0d9488 50%, #fef3c7 100%)'
+            background: 'linear-gradient(135deg, #3e2723 0%, #0d9488 50%, #fef3c7 100%)'
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
