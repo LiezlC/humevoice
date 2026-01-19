@@ -3,7 +3,7 @@
  * Using OpenAI API for high-quality translation
  */
 
-export async function translateToEnglish(text: string, sourceLanguage: 'pt' | 'af' | 'sw'): Promise<string> {
+export async function translateToEnglish(text: string, sourceLanguage: 'pt' | 'af' | 'sw' | 'ar'): Promise<string> {
   // Check if we have OpenAI API key
   const apiKey = process.env.OPENAI_API_KEY;
 
@@ -60,7 +60,8 @@ function getLanguageName(code: string): string {
   const names: { [key: string]: string } = {
     pt: 'Portuguese',
     af: 'Afrikaans',
-    sw: 'Swahili'
+    sw: 'Swahili',
+    ar: 'Arabic'
   };
   return names[code] || code;
 }

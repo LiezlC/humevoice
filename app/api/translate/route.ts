@@ -23,7 +23,8 @@ export async function POST(request: NextRequest) {
     const languageNames: { [key: string]: string } = {
       pt: 'Portuguese',
       af: 'Afrikaans',
-      sw: 'Swahili'
+      sw: 'Swahili',
+      ar: 'Arabic'
     };
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {

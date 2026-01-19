@@ -9,7 +9,7 @@ import Link from "next/link";
 import type { Language as SupabaseLanguage } from "@/utils/supabase";
 
 // Local type for available languages in this component
-type Language = 'en' | 'pt';
+type Language = 'en' | 'pt' | 'ar';
 
 interface UITranslations {
   [key: string]: {
@@ -44,6 +44,16 @@ const uiTranslations: UITranslations = {
     connecting: "Conectando...",
     trustBadge: "Confiança e Segurança",
     privacyBadge: "Certificado Privado"
+  },
+  ar: {
+    title: "عرض GrieVoice",
+    subtitle: "وكيل الذكاء الاصطناعي للعلاقات الصناعية",
+    heading: "قدم شكواك بكل ثقة",
+    description: "مرحباً بك في بوابة خدماتنا. معلومات العلاقات الصناعية وتلقي الشكاوي بمساعدة صوتية مدعومة بالذكاء الاصطناعي.",
+    startButton: "ابدأ المحادثة",
+    connecting: "جاري الاتصال...",
+    trustBadge: "ثقة وأمان",
+    privacyBadge: "خصوصية معتمدة"
   }
 };
 
@@ -60,12 +70,14 @@ export default function StartCall({
 
   const languageOptions = [
     { code: 'en' as Language, label: 'English', flag: '🇬🇧' },
-    { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' }
+    { code: 'pt' as Language, label: 'Português', flag: '🇵🇹' },
+    { code: 'ar' as Language, label: 'العربية', flag: '🇸🇦' }
   ];
 
   const configIds = {
     en: '989fee36-dddf-459f-b2bf-e90644d3aadf',
-    pt: 'f1ff7e4d-ea13-4d3f-a1fb-2f3d36580aae'
+    pt: 'f1ff7e4d-ea13-4d3f-a1fb-2f3d36580aae',
+    ar: 'PLACEHOLDER_ARABIC_CONFIG_ID' // TODO: Replace with actual Arabic config ID
   };
 
   const handleStartCall = async () => {
@@ -137,7 +149,7 @@ export default function StartCall({
                 transition={{ delay: 0.1 }}
               >
                 {/* Header */}
-                <div className="text-center mb-8">
+                <div className="text-center mb-8" dir={selectedLanguage === 'ar' ? 'rtl' : 'ltr'}>
                   <h1 className="text-white text-3xl font-bold mb-2">
                     {currentTranslations.title}
                   </h1>
@@ -155,7 +167,7 @@ export default function StartCall({
                     </div>
                   </div>
 
-                  <div className="text-center space-y-3">
+                  <div className="text-center space-y-3" dir={selectedLanguage === 'ar' ? 'rtl' : 'ltr'}>
                     <h2 className="text-2xl font-bold text-gray-900">
                       {currentTranslations.heading}
                     </h2>
@@ -170,11 +182,10 @@ export default function StartCall({
                       <Button
                         key={lang.code}
                         variant={selectedLanguage === lang.code ? "default" : "outline"}
-                        className={`flex-1 h-auto py-4 flex flex-col items-center gap-2 relative transition-all ${
-                          selectedLanguage === lang.code
+                        className={`flex-1 h-auto py-4 flex flex-col items-center gap-2 relative transition-all ${selectedLanguage === lang.code
                             ? 'bg-teal-600 hover:bg-teal-700 text-white border-teal-600'
                             : 'border-2 border-gray-200 hover:border-teal-300 bg-white'
-                        }`}
+                          }`}
                         onClick={() => {
                           console.log('Language selected:', lang.code);
                           setSelectedLanguage(lang.code);
