@@ -77,7 +77,7 @@ export default function StartCall({
   const configIds = {
     en: '989fee36-dddf-459f-b2bf-e90644d3aadf',
     pt: 'f1ff7e4d-ea13-4d3f-a1fb-2f3d36580aae',
-    ar: 'PLACEHOLDER_ARABIC_CONFIG_ID' // TODO: Replace with actual Arabic config ID
+    ar: 'e75e4cc9-1d30-4e46-9044-3adaf680b84f' // Karim (Arabic - Saudi, no tools)
   };
 
   const handleStartCall = async () => {

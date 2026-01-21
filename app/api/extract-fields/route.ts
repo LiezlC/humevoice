@@ -110,7 +110,7 @@ Transcript (Language: ${grievance.language}):
 ${transcript}`;
 
     const message = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-haiku-4-20250514',
       max_tokens: 1024,
       messages: [
         {
