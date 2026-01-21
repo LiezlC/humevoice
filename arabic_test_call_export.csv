@@ -1,0 +1,18 @@
+ID,Conversation ID,Language,Submitter Name,Contact,Incident Date,Location,People Involved,Category,Description,Urgency,Status,Created At,Arabic Transcript (excerpt),English Translation (excerpt)
+40829b77-25b1-45cc-a402-0b9fc7a1f6bb,conv_1768970427164_cv95ifuub,Arabic (Saudi),Khaled Al-Otaibi,0501234567,October 2024,"Production Factory, Department B, Jeddah","Supervisor Saad Al-Maliki, Operations Manager Fahd Al-Shammari",Wages - Unpaid Overtime,"Worker reports 3 months of unpaid overtime (approximately 20 hours per month). Has repeatedly contacted supervisor who promises to follow up but takes no action. Multiple colleagues in Department B facing same issue. Worker has financial obligations and needs urgent resolution.",High,New,2026-01-21 04:40:50,"المستخدم: أكيد أنا أشتغل في مصنع الإنتاج تحديداً القسم بي في جدة من أكتوبر الماضي. وأنا أشتغل ساعات إضافية كثيرة تقريباً عشرين ساعة كل شهر بس ما استلمت ولا ريال.
+
+الوكيل: مشكور إنك شاركتني هالكلام. باين إن الموضوع صعب وظالم لك...
+
+المستخدم: إي الموضوع فعلاً مستعجل جداً لأني أعتمد على دخل الساعات الإضافية ووضعي المالي حالياً صعب...
+
+الوكيل: مقدر وضعك تماماً. حاب تشاركنا اسمك؟
+
+المستخدم: أكيد اسمي خالد العتيبي...","User: I work at the production factory, specifically in Department B in Jeddah, since last October. I work a lot of extra hours, around twenty hours per month, but I haven't received any payment.
+
+Agent: Thank you for sharing this with me. It seems like a difficult and unfair situation for you...
+
+User: This matter is very urgent because I rely on the income from the extra hours and my financial situation is currently difficult...
+
+Agent: I understand your situation completely. Would you like to share your name with us?
+
+User: My name is Khaled Al-Otaibi..."

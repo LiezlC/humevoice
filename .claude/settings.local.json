@@ -24,7 +24,9 @@
       "Bash(if not exist public mkdir public)",
       "Bash(if not exist publicimages mkdir publicimages)",
       "Bash(mkdir:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(head:*)",
+      "Bash(xxd:*)"
     ],
     "deny": [],
     "ask": []

@@ -101,6 +101,13 @@ export default function StartCall({
     }
   };
 
+  // Reset to language selector when call ends
+  useEffect(() => {
+    if (status.value === "disconnected") {
+      setShowLanguageSelector(true);
+    }
+  }, [status.value]);
+
   const currentTranslations = uiTranslations[selectedLanguage];
 
   return (

@@ -1,0 +1,174 @@
+id,conversation_id,language,transcript,submitter_name,submitter_contact,incident_date,incident_location,people_involved,category,description,urgency,status,created_at,updated_at,transcript_en
+40829b77-25b1-45cc-a402-0b9fc7a1f6bb,conv_1768970427164_cv95ifuub,ar,"User: أكيد أنا أشتغل في مصنع الإنتاج تحديدا القسم بي في جدة من أكتوبر الماضي. وأنا أشتغل ساعات إضافية كثيرة تكريما عشرين ساعة كل شهر بس ما استلمت ولا ريال.
+
+Agent: مشكور إنك شاركتني هالكلام. باين إن الموضوع صعب وظالم لك. يعني من أكتوبر الماضي لين الحين، تقريباً عشرين ساعة إضافية كل شهر وما استلمت أجرها؟ هل كلمت أحد عن هالموضوع، زي المشرف أو قسم الموارد البشرية؟
+
+User: إيه نعم بدأت المشكلة من أكتوبر اللي فات يعني الآن ليه حوالي ثلاث شهور.
+
+Agent: تمام، فهمت. ثلاث شهور وأنت تنتظر حقك. هالمعلومة جداً مهمة. هل كلمت مشرفك أو أحد من الإدارة عن هالموضوع، ولا لسه؟
+
+User: ايوه كلمتي المشرف سعد المالكي أكثر من مرة وكل مرة يكون اللي بشوف الموضوع.
+
+Agent: مقدر وضعك تماماً. يعني المشرف سعد المالكي وعدك أكثر من مرة بس ما في تحرك لين الحين.
+
+Agent: هل في شهود معك يشوفون الساعات الإضافية اللي تشتغلها، أو زملاء عندهم نفس المشكلة؟
+
+User: بالضبط سعد يكون لي دائماً إنه بيتابع الموضوع بس كل مرة نفس الكلام. ألا يتغير شيء وأنا كل شهر أشتغل زيادة وما أخذت ولا ريال عن الساعات الإضافية.
+
+Agent: باين إن الموضوع مستمر وما في حل لين الحين. هل في زملاء معك يشتغلون ساعات إضافية برضو وما يستلمون أجرها، أو شهود يشوفونك وأنت تشتغل الساعات الزيادة؟
+
+User: إلى الآن للأسف ما في حل كلهم بس يعطوني وعود ولا أحد نفذي أو.
+
+Agent: أفهمك تماماً. بخصوص الشهود أو الزملاء، هل في أحد معك في نفس الوضع أو يشوفك تشتغل الساعات الإضافية؟
+
+User: في بعض الزملاء يشتغلون مع نفس الشفتاء وكمان عندهم نفس المشكلة مع الساعات الإضافية ما استلم.
+
+Agent: هالمعلومة جداً مهمة. يعني المشكلة مو بس معك، في زملاء كمان ما استلموا حقهم. تقدر تذكرلي أسماء بعض الزملاء هذولي، لو تعرفهم؟
+
+User: ايوه صحيح كلنا في القسم بي عندنا نفس المشكلة تقريباً بس كل واحد ساكت ومتردد. يشتكي أنا جمعت أسماء بعض الزملاء لا واحتجتوها بعدين دعم للشكوى.
+
+Agent: مشكور جداً، هذا شيء ممتاز ويقوي الموضوع. إذا عندك الأسماء جاهزة وحاب تشاركها معي الحين، أكيد راح تفيد. ولا تفضل تعطيني إياها بعدين؟
+
+User: اينهم الأسماء عندي جاهزة إذا احتجتوها مستقبلاً حاليا أبغى.
+
+Agent: تمام، ما عندك مشكلة. الأسماء موجودة عندك لو احتجناها لاحقاً. خليني أتأكد من كم نقطة: وش كثر الموضوع مستعجل بالنسبة لك؟ يعني هل في ضغط مالي حالياً عليك بسبب هالموضوع؟
+
+User: أكيد ما عندي أي مشكلة إذا احتجت الأسماء أو تفاصيل أكثر عن الزملاء بل قومي أنا.
+
+Agent: مشكور على تعاونك. بخصوص سؤالي، هل الموضوع مستعجل ومأثر عليك مالياً الحين، ولا تعتبرها مشكلة مستمرة تحتاج حل بس مو ضغط فوري؟
+
+User: إي الموضوع فعلاً مستعجل جداً لأني أعتمد على دخل الساعات الإضافية ووضعت المالية. حالياً صعبة بسبب التأخير أحتاج حل بسرعة ما أقدر أنتظر أكثر ودي أنتهي.
+
+Agent: مقدر وضعك تماماً. باين إن الموضوع ضاغط عليك وأنت محتاج حل عاجل. هالمعلومات اللي شاركتني إياها جداً مهمة وراح توصل للمختصين. حاب تشاركنا اسمك، ولا تفضل تبقى مجهول؟
+
+User: صحيح أنا حاليا جداً محتاج فلوس الساعات الإضافية على شان عند التزامات ودفعات.
+
+Agent: أفهمك تماماً، الوضع صعب ومحتاج حل عاجل. بخصوص التواصل معك للمتابعة: حاب تشاركنا اسمك وطريقة نتواصل معك، ولا تفضل تبقى مجهول؟ الخيار راجع لك تماماً.
+
+User: تسلم الله يعطيك العام أتمنى فعل تفضل أي معلومات أو.
+
+Agent: العفو، أنا هنا عشانك. بس ودي أتأكد: حاب تعطيني اسمك ورقم جوالك عشان نقدر نتابع معك الشكوى، ولا تفضل ما تعطي معلومات شخصية وتبقى مجهول؟ الاثنين تمام عندنا.
+
+User: أكيد اسم خالد العتيبي أحتاج أهجلاك الاسم ورقم جوالي خمسة.
+
+Agent: مشكور يا خالد. خلني أتأكد من الاسم: خاء ألف لام دال، العين تاء ياء باء ياء. صحيح كذا؟ وبعدين أكمل رقم الجوال.
+
+User: أكيد أهاشي لك ألف لندن عين.
+
+Agent: تمام، خلني أتأكد معك: الاسم خالد، يعني: خاء - ألف - لام - دال. والعائلة العتيبي: عين - تاء - ياء - باء - ياء. صحيح كذا؟
+
+User: ألف ليم د وبعدها العتيبي العين ت.
+
+Agent: تمام فهمت. خالد: خاء - ألف - لام - دال. العتيبي: عين - تاء - ياء - باء - ياء. صحيح كذا يا خالد؟ وبعدين أخذ رقم جوالك.
+
+User: رأمي خمسة صفر واحد اثنين ثلاثة أربعة خمسة ستة سبعة أي وقت.
+
+Agent: ممتاز، رقم جوالك: خمسة صفر واحد، اثنين ثلاثة أربعة، خمسة ستة سبعة. صحيح كذا يا خالد؟
+
+User: خمسة صفر واحد اثنين ثلاثة أربعة خمسة ستة سبعة هذا هو رقمي صحيح. Yeah.
+
+Agent: تمام يا خالد، مشكور جداً على تعاونك. هالمعلومات سرية وراح يراجعها المختصين، وراح نتواصل معك على هالرقم للمتابعة. هل في أي شيء ثاني تبغى تضيفه أو تحكيلي إياه عن الموضوع؟
+
+User: الله يكتمنك ويعطيك العافية شكراً لتعاونك ووقتك أتمنى فعلاً.
+
+Agent: الله يعافيك يا خالد. أنا اللي أشكرك على شجاعتك وثقتك. شكواك راح توصل للمختصين وراح يتواصلون معك قريب إن شاء الله. إذا احتجت أي شيء ثاني، أنا هنا. بالتوفيق لك.
+
+User: الله يسعدك ما أصرت إذا احتاجت أي شيء أو مستجدات بلغمي وأتمنى أسمع.
+
+Agent: إن شاء الله راح يتواصلون معك على رقمك ويبلغونك بالمستجدات. الله يوفقك يا خالد وإن شاء الله تنحل المشكلة بسرعة. في أمان الله.
+
+User: إن شاء الله أنا بانتظار تواصلكم وشاكر لكم جهودكم إذا في أي.
+
+Agent: العفو يا خالد، هذا واجبنا. إذا في أي تطورات أو معلومات جديدة تبغى تشاركها، تقدر تتواصل معنا في أي وقت. الله يحفظك ويسهل أمورك.
+
+User: الله يعفي كويس يدك شكراً ليك إذا زار أي جديد أو احتجت أوضح.
+
+Agent: حياك الله يا خالد، أنا موجود متى ما احتجت. الله معك وبالتوفيق إن شاء الله.
+
+User: الله يحفظك ويجزيك خير شكراً ليك على لطفك وتعاونك إذا احتجتكم.
+
+Agent: الله يبارك فيك يا خالد. لا تتردد أبداً، نحن هنا عشانك. مع السلامة وإن شاء الله تنحل أمورك قريب.
+
+User: الله يبارك فيك ويعطيك العافية شكراً على اهتمامك وردك الطيب.
+
+Agent: الله يعافيك ويسعدك يا خالد. في أمان الله وربنا يسهل أمورك. مع السلامة.
+
+User: سلام يا الغالي أن لا يسعدك وفأك في أمان الله.
+
+Agent: سلامات يا خالد، الله يوفقك ويحفظك. في أمان الله.",,,,,,,أكيد أنا أشتغل في مصنع الإنتاج تحديدا القسم بي في جدة من أكتوبر الماضي. وأنا أشتغل ساعات إضافية كثيرة تكريما عشرين ساعة كل شهر بس ما استلمت ولا ريال.,medium,new,2026-01-21 04:40:50.885267+00,2026-01-21 04:58:32.312328+00,"User: I work at the production factory, specifically in department B in Jeddah, since last October. I work a lot of extra hours, around twenty hours per month, as a form of recognition, but I haven't received any payment.
+
+Agent: Thank you for sharing this with me. It seems like a difficult and unfair situation for you. So, from last October until now, you've been working around twenty extra hours per month and haven't received the pay for it? Have you talked to anyone about this issue, like your supervisor or the HR department?
+
+User: Yes, the issue started last October, so it's been about three months now.
+
+Agent: Understood. Three months and you're still waiting for your rights. This information is crucial. Have you spoken to your supervisor or anyone from the management about this issue, or not yet?
+
+User: Yes, I have spoken to my supervisor, Saad Al-Maliki, more than once, and each time he's the one handling the matter.
+
+Agent: I understand your situation completely. So, your supervisor, Saad Al-Maliki, has promised you multiple times, but there has been no progress so far.
+
+Agent: Do you have any witnesses who see the extra hours you work, or colleagues who are facing the same issue?
+
+User: Exactly, Saad always assures me that he is following up on the issue, but it's the same story every time. Nothing changes, and every month I work extra hours without receiving any payment for them.
+
+Agent: It seems like the issue is ongoing, and there is no resolution yet. Do you have colleagues who also work extra hours but do not receive payment, or witnesses who see you working the extra hours?
+
+User: Unfortunately, there is no solution so far. They all just give me promises, but no one follows through.
+
+Agent: I understand. Regarding witnesses or colleagues, do you have anyone in the same situation or who sees you working the extra hours?
+
+User: Some colleagues work the same shifts as me, and they also have the same issue with not receiving payment for the extra hours.
+
+Agent: This information is very important. So, the problem is not just with you; there are colleagues who have not received their dues as well. Can you remember the names of some of these colleagues, if you know them?
+
+User: Yes, that's right. All of us in department B have almost the same issue, but everyone is silent and hesitant. I have collected the names of some colleagues and will use them later to support the complaint.
+
+Agent: Thank you very much. This is excellent and strengthens the case. If you have the names ready and want to share them with me now, it would be helpful. Or would you prefer to provide them later?
+
+User: I have the names ready. If you need them in the future, I have them.
+
+Agent: No problem. If we need the names later, we know you have them. Let me confirm a few points: How urgent is this matter for you? Is there any financial pressure on you currently due to this issue?
+
+User: I have no problem providing the names or more details about the colleagues. Go ahead.
+
+Agent: Thank you for your cooperation. In terms of urgency, is this matter pressing for you right now, or do you consider it an ongoing issue that needs a solution but not an immediate one?
+
+User: This matter is very urgent because I rely on the income from the extra hours and have financial commitments. It's difficult for me currently due to the delay, and I need a solution quickly. I can't wait any longer; I want this to be resolved.
+
+Agent: I understand your situation completely. It seems like the issue is pressing for you and you need an urgent solution. The information you shared is crucial and will be forwarded to the relevant authorities. Would you like to share your name with us, or would you prefer to remain anonymous?
+
+User: My name is Khaled Al-Otaibi. I need the issue to be resolved quickly due to my financial commitments.
+
+Agent: I understand. Let me confirm the spelling of your name: Khaa - Alef - Lam - Dal, Al-Otaibi: Ain - Taa - Yaa - Baa - Yaa. Is that correct? And then, please provide your mobile number.
+
+User: Yes, that's correct. My mobile number is 05XXXXXXXX.
+
+Agent: Great, your mobile number is 05XXXXXXXX. Is that correct?
+
+User: Yes, that's correct. Thank you.
+
+Agent: Thank you for your cooperation, Khaled. This information is confidential and will be reviewed by the relevant authorities. We will contact you on this number for further follow-up. Is there anything else you would like to add or inform me about regarding the issue?
+
+User: Thank you for your help and time. I really appreciate it.
+
+Agent: You're welcome, Khaled. I thank you for your courage and trust. Your complaint will be addressed by the authorities, and they will contact you soon. If you need anything else, I am here for you. Good luck.
+
+User: May God bless you. If there are any updates or if I need further clarification, I will reach out.
+
+Agent: InshaAllah, they will contact you on your number and inform you of any updates. God bless you, and I hope the issue is resolved quickly. Farewell.
+
+User: May God bless you. Thank you for your kindness and cooperation. If I need you, I will reach out.
+
+Agent: May God bless you, Khaled. Don't hesitate to reach out anytime. We are here for you. Take care and good luck.
+
+User: May God bless you and reward you. Thank you for your attention and kind responses. If I need your help, I will contact you.
+
+Agent: May God bless you, Khaled. It's our duty to assist you. If there are any developments or new information you want to share, feel free to reach out anytime. God be with you and may your affairs be made easy.
+
+User: May God bless you. Thank you for your assistance. If there are any new updates or if I need further clarification, I will inform you.
+
+Agent: You're welcome, Khaled. We are here for you whenever you need us. God be with you and may your matters be resolved soon. Farewell.
+
+User: Peace be upon you. May God bless you and keep you safe.
+
+Agent: Goodbye, Khaled. God bless you and guide you. Farewell."

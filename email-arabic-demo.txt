@@ -1,0 +1,33 @@
+Subject: GrieVoice Arabic Demo - Test Call Results
+
+Hi [Contact Name],
+
+Quick update ahead of our Teams meeting: I've successfully completed the Arabic (Saudi dialect) integration for GrieVoice and ran a test call this evening.
+
+**What's Working:**
+• Full trilingual support: English, Portuguese, and Arabic (Saudi)
+• Arabic voice agent (Karim) conducting conversations in Saudi dialect
+• Automatic transcription and translation to English
+• Structured field extraction using AI (Claude Haiku 4.5)
+• Database storage with proper UTF-8 encoding
+
+**Test Call Summary:**
+Attached is an export from the test conversation. Please note there's a minor voice/scenario mismatch (female voice, male name) - this was due to limited Arabic voice options available in the platform. The current voice is "Layla" (female), but the test scenario uses "Khaled" (male worker).
+
+This is purely a proof-of-concept limitation and doesn't affect the system's functionality. The important takeaway is that the Arabic agent successfully:
+- Conducted the entire conversation in natural Saudi dialect
+- Collected all required grievance information
+- Handled name spelling verification
+- Captured contact details and urgency assessment
+- Translated the full transcript to English for review
+
+**Next Steps:**
+Once we have access to a male Arabic voice option, we can align the voice with appropriate test scenarios. The underlying system architecture fully supports this.
+
+Looking forward to discussing this on our call.
+
+Best regards,
+Liezl
+
+---
+Attachment: arabic_test_call_export.csv
